@@ -1,10 +1,17 @@
 class Creator < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+  extend FriendlyId
+  friendly_id :username, use: [:slugged, :finders] 
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one_attached :avatar    
+  has_one_attached :avatar 
+  
+  validate :password_complexity
+  validates :username, presence: true, uniqueness: true
   
   
   def first_name
