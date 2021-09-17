@@ -59,3 +59,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "react-rails", "~> 2.6"
 
 gem "devise", "~> 4.8"
+
+gem "friendly_id", "~> 5.4"
