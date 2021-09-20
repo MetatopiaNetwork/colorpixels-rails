@@ -16,7 +16,7 @@ Rails.application.routes.draw do
                              confirmations: 'confirmations'
                            }
                             
-  authenticated :user  do
+  authenticated :creator  do
     root :to => "creators#show" , as: :authenticated_root
     
     resources :creators,  only: [:show, :edit]
