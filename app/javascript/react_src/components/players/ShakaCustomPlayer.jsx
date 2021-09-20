@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import ShakaPlayer from 'shaka-player-react'
 
-function ShakeCustomPlayer(props) {
+function ShakaCustomPlayer(props) {
 	const controllerRef = useRef(null);
 
 	useEffect(() => {
@@ -25,4 +25,4 @@ function ShakeCustomPlayer(props) {
 	return <ShakaPlayer ref={controllerRef} />;
 }
 
-export default ShakeCustomPlayer
+export default ShakaCustomPlayer
