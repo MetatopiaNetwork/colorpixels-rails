@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Hls from "hls.js";
 
-export default function VideoPlayer(props) {
+export default function HTML5VideoPlayer(props) {
 	const videoRef = useRef(null);
 	const src = props.src;
 
@@ -32,7 +32,9 @@ export default function VideoPlayer(props) {
 
 	return (
 		<video
+			autoPlay
 			controls
+			controlslist="noremoteplayback"
 			ref={videoRef}
 			style={{ width: "100%" }}
 		/>
