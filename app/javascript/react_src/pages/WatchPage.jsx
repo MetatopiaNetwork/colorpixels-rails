@@ -21,7 +21,7 @@ function WatchPage() {
                 height: "400px",
                 borderRadius: "8px",
             }}>
-                <VideoPlayer src="https://cdn.livepeer.com/hls/4c0dydkzyw3noeem/current.m3u8"/>
+                <VideoPlayer src="https://cdn.livepeer.com/hls/4c0dydkzyw3noeem/index.m3u8"/>
             </div>
 
 
