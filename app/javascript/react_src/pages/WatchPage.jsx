@@ -2,7 +2,7 @@ import React from "react"
 import {getLiveId} from "../bridge";
 import 'shaka-player/dist/controls.css';
 import VideoJSPlayer from "../components/players/VideoJSPlayer";
-import {Dropdown} from 'react-bootstrap';
+import {Dropdown, Button} from 'react-bootstrap';
 
 
 function WatchPage() {
@@ -24,18 +24,22 @@ function WatchPage() {
             }}>
                 <VideoJSPlayer src="https://cdn.livepeer.com/hls/274ecn88f1pocum0/index.m3u8"/>
 
-                <div className="dropdown" style={{ textAlign: "right", marginTop: "20px"}}>
-                    <Dropdown>
-                        <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                            Clip NFT
-                        </Dropdown.Toggle>
+                <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-end", marginTop: "20px"}}>
+                    <Button>NFT Clip Editor</Button>
+                    <div className="dropdown" style={{ marginLeft: "10px"}}>
+                        <Dropdown>
+                            <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                                Quick NFT Clip
+                            </Dropdown.Toggle>
 
-                        <Dropdown.Menu>
-                            <Dropdown.Item href="">Last 10 seconds</Dropdown.Item>
-                            <Dropdown.Item href="">Last 20 seconds</Dropdown.Item>
-                            <Dropdown.Item href="">Last 30 seconds</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
+                            <Dropdown.Menu>
+                                <Dropdown.Item href="">Last 10 seconds</Dropdown.Item>
+                                <Dropdown.Item href="">Last 20 seconds</Dropdown.Item>
+                                <Dropdown.Item href="">Last 30 seconds</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </div>
+
                 </div>
             </div>
 
