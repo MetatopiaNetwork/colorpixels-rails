@@ -1,5 +1,6 @@
 import React from "react"
 import {getLiveId} from "../bridge";
+import VideoPlayer from "../components/VideoPlayer";
 
 function WatchPage() {
 
@@ -15,12 +16,14 @@ function WatchPage() {
             }}>Live id: <i>{getLiveId()}</i></div>
             <div style={{
                 backgroundColor: "black",
-                width: "700px",
+                width: "100%",
+                maxWidth: "700px",
                 height: "400px",
                 borderRadius: "8px",
             }}>
-
+                <VideoPlayer src="https://cdn.livepeer.com/hls/4c0dydkzyw3noeem/current.m3u8"/>
             </div>
+
 
 
         </>
