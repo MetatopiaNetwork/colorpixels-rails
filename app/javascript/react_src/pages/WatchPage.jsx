@@ -2,9 +2,7 @@ import React from "react"
 import {getLiveId} from "../bridge";
 import 'shaka-player/dist/controls.css';
 import VideoJSPlayer from "../components/players/VideoJSPlayer";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Dropdown } from 'react-bootstrap';
-
+import {Dropdown} from 'react-bootstrap';
 
 
 function WatchPage() {
