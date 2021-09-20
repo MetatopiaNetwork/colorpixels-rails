@@ -1,11 +1,12 @@
 import React from 'react';
+import WatchPage from "./pages/WatchPage";
 
 function App() {
 
     return (
-        <div style={{ marginTop: "30px"}}>
-            hello react 2
-        </div>
+        <>
+            <WatchPage/>
+        </>
     )
 }
 
