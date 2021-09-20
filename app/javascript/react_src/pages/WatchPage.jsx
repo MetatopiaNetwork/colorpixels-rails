@@ -20,7 +20,7 @@ function WatchPage() {
                 width: "100%",
                 maxWidth: "700px",
             }}>
-                <VideoJSPlayer src="https://cdn.livepeer.com/hls/4c0dydkzyw3noeem/index.m3u8"/>
+                <VideoJSPlayer src="https://cdn.livepeer.com/hls/274ecn88f1pocum0/index.m3u8"/>
             </div>
 
 
