@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   unauthenticated do
-    root :to => 'frontend#index'
+    get 'live/:live_id', :to => 'frontend#live'
     resources :creators, only: [:show]
   end
   
