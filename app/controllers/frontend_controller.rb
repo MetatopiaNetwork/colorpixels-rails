@@ -1,4 +1,5 @@
 class FrontendController < ApplicationController
-  def index
+  def live
+    @live_id = params[:live_id]
   end
 end
