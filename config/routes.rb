@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'live/:live_id', :to => 'frontend#live' # pg: needs to be out of unauthenticated block
  
   unauthenticated do
     root :to => "pages#index", as: :unauthenticated_root
-    get 'live/:live_id', :to => 'frontend#live'
     resources :creators, only: [:show]
   end
   
