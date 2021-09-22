@@ -1,6 +1,5 @@
 class Creator < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_many :events
 
   extend FriendlyId
   friendly_id :username, use: [:slugged, :finders] 
