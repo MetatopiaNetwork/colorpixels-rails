@@ -6,8 +6,6 @@ class ClipTest < ActiveSupport::TestCase
         event: events(:regular_event),
     )
 
-    assert_nothing_raised do
-      clip.save!
-    end
+    clip.save!
   end
 end
