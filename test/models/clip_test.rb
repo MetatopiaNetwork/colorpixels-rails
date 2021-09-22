@@ -23,8 +23,7 @@ class ClipTest < ActiveSupport::TestCase
     assert clip.video.attached?
 
 
-    # /rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--33be3050889fef6e0563a56fd91129678bb199b4/clip.mp4
-    video_url = Rails.application.routes.url_helpers.rails_blob_path(clip.video, only_path: true)
+    video_url = Rails.application.routes.url_helpers.rails_blob_path(clip.video, only_path: true) # /rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--33be3050889fef6e0563a56fd91129678bb199b4/clip.mp4
     assert_match /\/clip\.mp4/, video_url
 
     # url_for(clip.video) # for redirect links
