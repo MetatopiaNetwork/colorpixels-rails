@@ -1,2 +1,10 @@
 <h1>Event#new</h1>
 <p>Find me in app/views/event/new.html.erb</p>
+
+<%= form_for @event, :url => { :action => "create" }, remote: false do |f| %>
+  <label>Name</label>
+  <%= f.text_field :name %>
+  <label>Stream URL</label>
+  <%= f.text_field :stream_url %>
+  <%= f.submit "Submit" %>
+<% end %>

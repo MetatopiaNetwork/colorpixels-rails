@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
     get 'event/show'
     get 'event/new'
-    get 'event/create'
+    post 'event/create'
   end
     
 

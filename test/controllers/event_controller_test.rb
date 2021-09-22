@@ -14,10 +14,4 @@ class EventControllerTest < ActionDispatch::IntegrationTest
     get event_new_url
     assert_response :success
   end
-
-  test "should get create" do
-    sign_in creators(:regular_creator)
-    get event_create_url
-    assert_response :success
-  end
 end
