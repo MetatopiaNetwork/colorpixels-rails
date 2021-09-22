@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   get 'live/:live_id', :to => 'frontend#live', as: "live" # pg: needs to be out of unauthenticated block
  
   unauthenticated do
@@ -21,6 +20,10 @@ Rails.application.routes.draw do
     
     resources :creators,  only: [:show, :edit]
     resources :dashboard
+
+    get 'event/show'
+    get 'event/new'
+    get 'event/create'
   end
     
 
