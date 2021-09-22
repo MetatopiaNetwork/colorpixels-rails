@@ -37,4 +37,9 @@ class CreatorTest < ActiveSupport::TestCase
       creator_copy.save!
     end
   end
+
+  test "#events creator has events" do
+    creator = creators(:regular_creator) # see fixtures
+    assert creator.events.length > 0
+  end
 end

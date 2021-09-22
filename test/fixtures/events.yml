@@ -1,4 +1,5 @@
 regular_event:
+  creator: regular_creator
   live_id: lporfidmej28d
   name: Live event 1
   stream_url: https://cdn.livepeer.com/hls/274ecn88f1pocum0/index.m3u8
