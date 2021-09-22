@@ -33,7 +33,7 @@ class CreatorTest < ActiveSupport::TestCase
         password_confirmation: "ColorPass123!"
     )
 
-    assert_raise do
+    assert_raises ActiveRecord::RecordInvalid do
       creator_copy.save!
     end
   end
