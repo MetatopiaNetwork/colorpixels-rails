@@ -5,8 +5,8 @@
 <div>
   Events:
   <ul>
-    <% @creator.events do |event| %>
-      <li><%= event.name %></li>
+    <% @creator.events.each do |event| %>
+      <li><%= link_to event.name, event_show_url(event.id) %></li>
     <% end %>
     <% if @creator.events.blank? %>
       <li>No events</li>

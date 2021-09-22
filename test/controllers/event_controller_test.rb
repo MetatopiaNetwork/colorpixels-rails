@@ -4,8 +4,9 @@ class EventControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers # Rails >= 5
 
   test "should get show" do
-    sign_in creators(:regular_creator)
-    get event_show_url
+    creator = creators(:regular_creator)
+    sign_in creator
+    get event_show_url(creator.events.first.id)
     assert_response :success
   end
 

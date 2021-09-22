@@ -21,9 +21,9 @@ Rails.application.routes.draw do
     resources :creators,  only: [:show, :edit]
     resources :dashboard
 
-    get 'event/show'
-    get 'event/new'
-    post 'event/create'
+    get 'event/show/:id', to: "event#show", as: :event_show
+    get 'event/new', to: "event#new", as: :event_new
+    post 'event/create', to: "event#create", as: :event_create
   end
     
 

@@ -2,6 +2,7 @@ class EventController < ApplicationController
   before_action :authenticate_creator!
 
   def show
+    @event = Event.find_by(id: params[:id], creator: current_creator)
   end
 
   def new
