@@ -1,0 +1,19 @@
+<div>
+  Hello creator: <%= @creator.username %>
+</div>
+
+<div>
+  Events:
+  <ul>
+    <% @creator.events.each do |event| %>
+      <li><%= link_to event.name, event_show_url(event.id) %></li>
+    <% end %>
+    <% if @creator.events.blank? %>
+      <li>No events</li>
+    <% end %>
+  </ul>
+</div>
+
+<div>
+  <%= link_to 'Create event', event_new_url %>
+</div>
