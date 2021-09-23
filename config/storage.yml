@@ -11,6 +11,7 @@ digitalocean:
   endpoint: https://sfo3.digitaloceanspaces.com
   bucket: colorpixels-dev1
   region: unused
+  public: true
   access_key_id: <%= Rails.application.credentials.dig(:digitalocean, :access_key) %>
   secret_access_key: <%= Rails.application.credentials.dig(:digitalocean, :secret) %>
 
