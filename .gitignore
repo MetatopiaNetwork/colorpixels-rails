@@ -40,3 +40,6 @@ yarn-debug.log*
 .yarn-integrity
 
 .idea
+
+/ffmpeg_tests
+.DS_Store

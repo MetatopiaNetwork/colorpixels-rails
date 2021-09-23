@@ -61,3 +61,5 @@ gem "react-rails", "~> 2.6"
 gem "devise", "~> 4.8"
 
 gem "friendly_id", "~> 5.4"
+
+gem "mocha", "~> 1.13"
