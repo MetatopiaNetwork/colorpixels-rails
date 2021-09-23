@@ -9,7 +9,7 @@ class ClipLiveSegmentJobTest < ActiveJob::TestCase
 
     ClipLiveSegmentJob.perform_now(clip, hls_url)
 
-    assert_match /\/clip\.mp4/, clip.video_url
+    assert_match /clip\.mp4/, clip.video_url
   end
 
   def get_mock_file
