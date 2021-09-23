@@ -12,7 +12,6 @@ class ClipLiveSegmentJob < ApplicationJob
     )
 
     tempfile.close
-    tempfile.unlink
   end
 
   def ffmpeg_clip(hls_url, n_seconds)
