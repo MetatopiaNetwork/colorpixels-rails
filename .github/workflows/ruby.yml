@@ -17,6 +17,15 @@ jobs:
   test:
 
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12.3
+        env:
+          POSTGRES_USER: colorpixels
+          POSTGRES_PASSWORD: colorpixelspass
+          POSTGRES_DB: colorpixels_rails_test
+        ports:
+          - 5435:5432
     strategy:
       matrix:
         ruby-version: ['2.7.2']
