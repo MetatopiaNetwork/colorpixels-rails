@@ -1,10 +1,10 @@
 class ClipLiveSegmentJob < ApplicationJob
   queue_as :default
 
-  def perform(event, hls_url, n_seconds = 20)
+  def perform(clip, hls_url = nil, n_seconds = 20)
+    hls_url = hls_url || clip.event.stream_url
     tempfile = ffmpeg_clip(hls_url, n_seconds)
 
-    clip = Clip.create!(event: event)
     clip.video.attach(
         io: tempfile,
         filename: "clip.mp4",
