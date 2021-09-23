@@ -29,7 +29,8 @@ class ClipControllerTest < ActionDispatch::IntegrationTest
     data = JSON.parse(response.body, symbolize_names: true)
 
     assert_equal clip.id, data[:id]
-    assert_match /\/clip\.mp4/, data[:video_url]
+    assert_match /\/clip\.mp4/, data[:relative_url]
+    # assert_not_nil data[:service_url] # does not work with local storage.
   end
 
   test "#show returns 404 when clip does not exists" do

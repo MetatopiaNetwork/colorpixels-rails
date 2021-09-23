@@ -65,7 +65,7 @@ function WatchPage() {
             {!!clipId &&
             <div>
                 <h3>Clip ID#{clipId}</h3>
-                {!(clipInfo?.video_url) &&
+                {!(clipInfo?.service_url) &&
                 <div style={{ color: "blue"}}>
                     Clip is getting processed
                 </div>
@@ -86,9 +86,9 @@ function WatchPage() {
                     clip data: {JSON.stringify(clipInfo)}
                 </div>
 
-                {!!(clipInfo?.video_url) &&
+                {!!(clipInfo?.service_url) &&
                 <div style={{ color: "green"}}>
-                    The clip is ready! <a href={clipInfo?.video_url} target="_blank"> View it</a>
+                    The clip is ready! <a href={clipInfo?.service_url} target="_blank"> View it</a>
                 </div>}
             </div>}
 

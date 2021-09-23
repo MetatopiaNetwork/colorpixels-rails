@@ -43,3 +43,5 @@ yarn-debug.log*
 
 /ffmpeg_tests
 .DS_Store
+
+.env
