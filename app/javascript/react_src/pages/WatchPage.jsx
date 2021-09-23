@@ -43,7 +43,7 @@ function WatchPage() {
 
                         }}
                     >
-                        NFT Clip
+                        NFT Clip what just happened
                     </Button>
                     <div className="dropdown" style={{display: "none", marginLeft: "10px"}}>
                         <Dropdown>
