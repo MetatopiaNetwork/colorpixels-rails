@@ -31,3 +31,9 @@ gem install foreman
 ```
 foreman start -f foreman.dev
 ```
+
+# Other commands
+edit credentials
+```
+EDITOR="nano -w" rails credentials:edit 
+```
