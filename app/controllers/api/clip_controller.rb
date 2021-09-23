@@ -6,7 +6,7 @@ class Api::ClipController < Api::AuthController
     clip = Clip.find_by_id(params[:id])
     render json: { error: "not found"}, status: 404 and return if clip.nil?
     # puts rails_blob_path(clip.video, disposition: "attachment")
-    render json: clip, :methods => :video_url, status: 200
+    render json: clip, :methods => [:service_url, :relative_url], status: 200
   end
 
   # POST /api/clip

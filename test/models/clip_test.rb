@@ -29,7 +29,7 @@ class ClipTest < ActiveSupport::TestCase
     # rails_blob_path(clip.video, disposition: "attachment") # for downloads links
   end
 
-  test "#video_url" do
+  test "#relative_url" do
     clip = clips(:regular_clip)
     file = Rails.root.join('test', 'fixtures', 'files', 'white_clip.mp4')
     clip.video.attach(
@@ -38,6 +38,6 @@ class ClipTest < ActiveSupport::TestCase
         content_type: "video/mp4"
     )
 
-    assert_match /\/clip\.mp4/, clip.video_url
+    assert_match /\/clip\.mp4/, clip.relative_url
   end
 end
