@@ -65,6 +65,11 @@ function WatchPage() {
             {!!clipId &&
             <div>
                 <h3>Clip ID#{clipId}</h3>
+                {!(clipInfo?.video_url) &&
+                <div style={{ color: "blue"}}>
+                    Clip is getting processed
+                </div>
+                }
                 <Button
                     onClick={async () => {
                         try {
@@ -75,11 +80,16 @@ function WatchPage() {
                         }
                     }}
                 >
-                    Fetch information
+                    Check if clip is ready
                 </Button>
                 <div>
                     clip data: {JSON.stringify(clipInfo)}
                 </div>
+
+                {!!(clipInfo?.video_url) &&
+                <div style={{ color: "green"}}>
+                    The clip is ready! <a href={clipInfo?.video_url} target="_blank"> View it</a>
+                </div>}
             </div>}
 
 
