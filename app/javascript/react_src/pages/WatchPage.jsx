@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import {getLiveId} from "../bridge";
 import 'shaka-player/dist/controls.css';
 import VideoJSPlayer from "../components/players/VideoJSPlayer";
@@ -7,6 +7,9 @@ import API from "../utils/API";
 
 
 function WatchPage() {
+
+    const [clipId, setClipId] = useState(null)
+    const [clipInfo, setClipInfo] = useState(null)
 
     return (
         <>
@@ -27,16 +30,22 @@ function WatchPage() {
 
                 <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-end", marginTop: "20px"}}>
                     <Button
-                        onClick={() => {
-                            API.post('clip', {
-                                live_id: getLiveId(),
-                                stream_url: "https://cdn.livepeer.com/hls/274ecn88f1pocum0/index.m3u8",
-                            });
+                        onClick={async () => {
+                            try {
+                                let response = await API.post('clip', {
+                                    live_id: getLiveId(),
+                                    stream_url: "https://cdn.livepeer.com/hls/274ecn88f1pocum0/index.m3u8",
+                                });
+                                setClipId(response.data.id)
+                            } catch (e) {
+                                console.log(e)
+                            }
+
                         }}
                     >
                         NFT Clip
                     </Button>
-                    <div className="dropdown" style={{ display: "none", marginLeft: "10px"}}>
+                    <div className="dropdown" style={{display: "none", marginLeft: "10px"}}>
                         <Dropdown>
                             <Dropdown.Toggle variant="primary" id="dropdown-basic">
                                 Quick NFT Clip
@@ -52,6 +61,26 @@ function WatchPage() {
 
                 </div>
             </div>
+
+            {!!clipId &&
+            <div>
+                <h3>Clip ID#{clipId}</h3>
+                <Button
+                    onClick={async () => {
+                        try {
+                            let response = await API.get('clip/' + clipId);
+                            setClipInfo(response.data)
+                        } catch (e) {
+                            console.log(e)
+                        }
+                    }}
+                >
+                    Fetch information
+                </Button>
+                <div>
+                    clip data: {JSON.stringify(clipInfo)}
+                </div>
+            </div>}
 
 
         </>

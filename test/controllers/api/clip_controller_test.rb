@@ -32,6 +32,12 @@ class ClipControllerTest < ActionDispatch::IntegrationTest
     assert_match /\/clip\.mp4/, data[:video_url]
   end
 
+  test "#show returns 404 when clip does not exists" do
+    get api_clip_path + "/404"
+
+    assert_response 404
+  end
+
   test "#create creates a new clip" do
     event = events(:regular_event)
 
