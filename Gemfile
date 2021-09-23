@@ -63,3 +63,5 @@ gem "devise", "~> 4.8"
 gem "friendly_id", "~> 5.4"
 
 gem "mocha", "~> 1.13"
+
+gem "aws-sdk-s3", "~> 1.103"
