@@ -3,6 +3,7 @@ import {getLiveId} from "../bridge";
 import 'shaka-player/dist/controls.css';
 import VideoJSPlayer from "../components/players/VideoJSPlayer";
 import {Dropdown, Button} from 'react-bootstrap';
+import API from "../utils/API";
 
 
 function WatchPage() {
@@ -25,8 +26,17 @@ function WatchPage() {
                 <VideoJSPlayer src="https://cdn.livepeer.com/hls/274ecn88f1pocum0/index.m3u8"/>
 
                 <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-end", marginTop: "20px"}}>
-                    <Button>NFT Clip Editor</Button>
-                    <div className="dropdown" style={{ marginLeft: "10px"}}>
+                    <Button
+                        onClick={() => {
+                            API.post('clip', {
+                                live_id: getLiveId(),
+                                stream_url: "https://cdn.livepeer.com/hls/274ecn88f1pocum0/index.m3u8",
+                            });
+                        }}
+                    >
+                        NFT Clip
+                    </Button>
+                    <div className="dropdown" style={{ display: "none", marginLeft: "10px"}}>
                         <Dropdown>
                             <Dropdown.Toggle variant="primary" id="dropdown-basic">
                                 Quick NFT Clip

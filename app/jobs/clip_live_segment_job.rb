@@ -10,15 +10,17 @@ class ClipLiveSegmentJob < ApplicationJob
         filename: "clip.mp4",
         content_type: "video/mp4"
     )
+
+    tempfile.close
+    tempfile.unlink
   end
 
   def ffmpeg_clip(hls_url, n_seconds)
     tempfile = ::Tempfile.new(%w[video .mp4])
     path = tempfile.path
-    tempfile.close
-    tempfile.unlink
 
-    system("ffmpeg", "-live_start_index 1 -sseof -20 -t 20 -i", hls_url, path, "-y")
+
+    system("ffmpeg", "-live_start_index","1","-sseof","-20","-t","20","-i", hls_url, path, "-y")
 
     return tempfile
   end
