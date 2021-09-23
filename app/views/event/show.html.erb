@@ -6,9 +6,18 @@
 </div>
 
 <div>
-  live_id: <strong><%= @event.live_id %></strong>
+  live_id:
+  <a href="/live/<%= @event.live_id %>" target="_blank">
+    <strong>
+      <%= @event.live_id %>
+    </strong>
+  </a>
 </div>
 
 <div>
   stream_url: <strong><%= @event.stream_url %></strong>
+</div>
+
+<div>
+  <%= link_to 'Back', authenticated_root_path %>
 </div>
