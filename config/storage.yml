@@ -8,9 +8,11 @@ local:
 
 digitalocean:
   service: S3
-  endpoint: https://nyc3.digitaloceanspaces.com
-  access_key_id: <%= Rails.env['DO_ACCESS_KEY_ID'] %>
-  secret_access_key: <%= Rails.env['DO_SECRET_ACCESS_KEY'] %>
+  endpoint: https://sfo3.digitaloceanspaces.com
+  bucket: colorpixels-dev1
+  region: unused
+  access_key_id: <%= ENV['DO_ACCESS_KEY_ID'] %>
+  secret_access_key: <%= ENV['DO_SECRET_ACCESS_KEY'] %>
 
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
