@@ -56,8 +56,6 @@ jobs:
     # node / webpacker
     - name: Install dependencies
       run: yarn install
-    - name: webpacker_compile
-      run: NODE_ENV=test bundle exec rails webpacker:compile
     # run tests
     - name: Run tests
       run: bundle exec rake
