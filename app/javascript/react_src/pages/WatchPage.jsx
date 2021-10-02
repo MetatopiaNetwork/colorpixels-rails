@@ -4,8 +4,7 @@ import 'shaka-player/dist/controls.css';
 import VideoJSPlayer from "../components/players/VideoJSPlayer";
 import {Dropdown, Button} from 'react-bootstrap';
 import API from "../utils/API";
-import {lazyMint721} from "../rarible";
-
+import Web3N from "web3";
 
 function WatchPage() {
 
@@ -99,6 +98,11 @@ function WatchPage() {
                                 // const tokenId = await lazyMint721("0xB4D6B7757d88BA7EBCB6663E91E98FA352C53E12", clipInfo.service_url)
                                 // console.log(tokenId)
                                 // setLazyTokenId(tokenId)
+                                window.ethereum.request({
+                                    method: "eth_requestAccounts"
+                                })
+
+                                const web3 = new Web3N(window.ethereum);
                             }}
                         >
                             LazyMint
