@@ -4,12 +4,14 @@ import 'shaka-player/dist/controls.css';
 import VideoJSPlayer from "../components/players/VideoJSPlayer";
 import {Dropdown, Button} from 'react-bootstrap';
 import API from "../utils/API";
+import {lazyMint721} from "../rarible";
 
 
 function WatchPage() {
 
     const [clipId, setClipId] = useState(null)
     const [clipInfo, setClipInfo] = useState(null)
+    const [lazyTokenId, setLazyTokenId] = useState(null)
 
     return (
         <>
@@ -66,7 +68,7 @@ function WatchPage() {
             <div>
                 <h3>Clip ID#{clipId}</h3>
                 {!(clipInfo?.service_url) &&
-                <div style={{ color: "blue"}}>
+                <div style={{color: "blue"}}>
                     Clip is getting processed
                 </div>
                 }
@@ -87,9 +89,26 @@ function WatchPage() {
                 </div>
 
                 {!!(clipInfo?.service_url) &&
-                <div style={{ color: "green"}}>
-                    The clip is ready! <a href={clipInfo?.service_url} target="_blank"> View it</a>
-                </div>}
+                <>
+                    <div style={{color: "green"}}>
+                        The clip is ready! <a href={clipInfo?.service_url} target="_blank"> View it</a>
+                    </div>
+                    <div>
+                        <Button
+                            onClick={async () => {
+                                // const tokenId = await lazyMint721("0xB4D6B7757d88BA7EBCB6663E91E98FA352C53E12", clipInfo.service_url)
+                                // console.log(tokenId)
+                                // setLazyTokenId(tokenId)
+                            }}
+                        >
+                            LazyMint
+                        </Button>
+                    </div>
+                    <div>
+                        Lazy Token Id: {lazyTokenId}
+                    </div>
+                </>
+                }
             </div>}
 
 
