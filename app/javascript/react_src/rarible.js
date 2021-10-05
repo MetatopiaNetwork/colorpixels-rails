@@ -1,6 +1,7 @@
 import {createRaribleSdk} from "@rarible/protocol-ethereum-sdk"
 import {getWeb3} from "./web3";
 import {toAddress} from "@rarible/types";
+import {getHttpClient} from "./httpClient";
 
 const MAINNET_INFO = {
     // api_endpoint: "ethereum-api.rarible.org",
@@ -86,10 +87,11 @@ async function lazyMint1155(creatorAddress, uri, value = 10000, contractAddress 
 async function customLazyMint721(creatorAddress, uri, value = 10000, selectedNetwork = SELECTED_NETWORK) {
     const baseEndpoint = selectedNetwork.api_endpoint
     const contractAddress = selectedNetwork.ERC721_contract
-    const url = `https://${baseEndpoint}/protocol/v0.1/ethereum/nft/collections/${contractAddress}/generate_token_id?minter=${creatorAddress}`
-    console.log(url)
-    const res = await fetch(url)
-    console.log(res.json())
+    const client = getHttpClient(baseEndpoint)
+    const path = `/protocol/v0.1/ethereum/nft/collections/${contractAddress}/generate_token_id?minter=${creatorAddress}`
+    console.log(path)
+    const res = await client.get(path)
+    console.log(res.data)
 }
 
 export {getRariableSDK, lazyMint721, lazyMint1155, customLazyMint721, SELECTED_NETWORK}
