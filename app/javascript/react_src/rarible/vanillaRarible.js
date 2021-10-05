@@ -3,26 +3,58 @@ import {getHttpClient} from "../httpClient";
 import {DEFAULT_SELECTED_NETWORK} from "./networks";
 
 async function customLazyMint721(creatorAddr, uri, nftPrice = "10000", selectedNetwork = DEFAULT_SELECTED_NETWORK) {
-    const baseEndpoint = selectedNetwork.api_endpoint
-    const contractAddress = selectedNetwork.ERC721_contract
-    const client = getHttpClient(baseEndpoint)
-    const path = `/protocol/v0.1/ethereum/nft/collections/${contractAddress}/generate_token_id?minter=${creatorAddr}`
-    const res = await client.get(path)
+    try {
+        const baseEndpoint = selectedNetwork.api_endpoint
+        const contractAddress = selectedNetwork.ERC721_contract
+        const client = getHttpClient(baseEndpoint)
+        const path = `/protocol/v0.1/ethereum/nft/collections/${contractAddress}/generate_token_id?minter=${creatorAddr}`
+        const res = await client.get(path)
 
-    const tokenID = res.data.tokenId
-    const r = res.data.signature.r
-    const s = res.data.signature.s
-    const v = res.data.signature.v
+        const tokenID = res.data.tokenId
+        const r = res.data.signature.r
+        const s = res.data.signature.s
+        const v = res.data.signature.v
 
-    const payload = get721Payload(contractAddress, selectedNetwork.chain_id, tokenID, uri, creatorAddr, nftPrice)
+        const message = get721msg(contractAddress, tokenID, uri, creatorAddr, nftPrice)
+        const payload = get721Payload(contractAddress, selectedNetwork.chain_id, message)
 
-    const web3 = getWeb3()
-    console.log(web3)
-    const signature = await web3SignPayload(web3, creatorAddr, payload)
-    console.log("signature: " + signature)
+        const web3 = getWeb3()
+        const signature = await web3SignPayload(web3, creatorAddr, payload)
 
-    const params = create721LazyNFTParams(contractAddress, tokenID, uri, creatorAddr, signature, nftPrice)
+        const params = {
+            ...message,
+            "signatures": [signature],
+        }
+        console.log(JSON.stringify(params))
 
+        const createRes = await client.post("/protocol/v0.1/ethereum/nft/mints", params)
+        console.log(createRes.data)
+    } catch (e) {
+        console.error("ERROR in customLazyMint721")
+        console.error(e)
+        console.error(e.response)
+    }
+
+}
+
+function get721msg(contractAddr, tokenId, uri, creatorAddr, nftPrice) {
+    const message = {
+        "@type": "ERC721",
+        "contract": contractAddr,
+        "tokenId": tokenId,
+        "tokenURI": uri, // /ipfs/QmWLsBu6nS4ovaHbGAXprD1qEssJu4r5taQfB74sCG51tp
+        "uri": uri,
+        "creators": [
+            {
+                account: creatorAddr,// "0x1234...",
+                value: nftPrice,
+            }
+        ],
+        // "royalties": [{account: "0x1234...", value: 2000}],
+        "royalties": [],
+    }
+
+    return message
 }
 
 async function create721LazyNFTParams(contractAddr, tokenId, uri, creatorAddr, signature, nftPrice) {
@@ -39,7 +71,7 @@ async function create721LazyNFTParams(contractAddr, tokenId, uri, creatorAddr, s
         ],
         // "royalties": [{account: "0x1234...", value: 2000}],
         "royalties": [],
-        "signatures": [signature]
+
     }
 
     return params
@@ -53,7 +85,7 @@ async function web3SignPayload(web3, creatorAddr, payload) {
 }
 
 
-function get721Payload(contractAddr, chainID, tokenId, uri, creatorAddr, nftPrice) {
+function get721Payload(contractAddr, chainID, message) {
     const payload = {
         "types": {
             "EIP712Domain": [
@@ -92,21 +124,7 @@ function get721Payload(contractAddr, chainID, tokenId, uri, creatorAddr, nftPric
             verifyingContract: contractAddr, // "0xB0EA149212Eb707a1E5FC1D2d3fD318a8d94cf05"
         },
         "primaryType": "Mint721",
-        "message": {
-            "@type": "ERC721",
-            "contract": contractAddr,
-            "tokenId": tokenId,
-            "tokenURI": uri, // /ipfs/QmWLsBu6nS4ovaHbGAXprD1qEssJu4r5taQfB74sCG51tp
-            "uri": uri,
-            "creators": [
-                {
-                    account: creatorAddr,// "0x1234...",
-                    value: nftPrice,
-                }
-            ],
-            // "royalties": [{account: "0x1234...", value: 2000}],
-            "royalties": [],
-        }
+        "message": message
     }
 
     return payload
