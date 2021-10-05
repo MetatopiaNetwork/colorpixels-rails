@@ -7,13 +7,13 @@ import API from "../utils/API";
 import {getWeb3} from "../web3";
 import {SDKLazyMint721} from "../rarible/SDKRarible";
 import {get721LazyNFTUrl} from "../rarible/raribleUtils"
-import {GlobalContext} from "../GlobalContextProvider";
+import {EthContext} from "../EthContextProvider";
 import AccountDisplay from "../components/AccountDisplay";
 import EventHeader from "../components/EventHeader";
 
 function WatchPage() {
 
-    const {ethAccount} = useContext(GlobalContext)
+    const {ethAccount} = useContext(EthContext)
     const [clipId, setClipId] = useState(null)
     const [clipInfo, setClipInfo] = useState(null)
     const [lazyTokenId, setLazyTokenId] = useState(null)

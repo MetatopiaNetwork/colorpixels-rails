@@ -1,5 +1,5 @@
 import React, {useContext} from "react"
-import {GlobalContext} from "../GlobalContextProvider";
+import {EthContext} from "../EthContextProvider";
 import {Button} from "react-bootstrap";
 
 // display the ETH account if exists. Ask to connect account otherwise
@@ -8,7 +8,7 @@ function AccountDisplay() {
         ethConnected,
         ethAccount,
         connectEthAccount,
-    } = useContext(GlobalContext)
+    } = useContext(EthContext)
 
     return (
         <>

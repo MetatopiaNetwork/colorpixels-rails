@@ -1,9 +1,9 @@
 import React, {createContext, useState} from "react"
 import {getWeb3} from "./web3";
 
-const GlobalContext = createContext(null);
+const EthContext = createContext(null);
 
-function GlobalContextProvider(props) {
+function EthContextProvider(props) {
     const [ethConnected, setEthConnected] = useState(false)
     const [ethAccount, setEthAccount] = useState(null)
 
@@ -19,7 +19,7 @@ function GlobalContextProvider(props) {
 
     return (
         <>
-            <GlobalContext.Provider
+            <EthContext.Provider
                 value={{
                     ethConnected,
                     ethAccount,
@@ -27,9 +27,9 @@ function GlobalContextProvider(props) {
                 }}
             >
                 {props.children}
-            </GlobalContext.Provider>
+            </EthContext.Provider>
         </>
     )
 }
 
-export {GlobalContextProvider, GlobalContext}
+export {EthContextProvider, EthContext}

@@ -1,18 +1,18 @@
 import React from 'react';
 import WatchPage from "./pages/WatchPage";
 import PageLayout from "./layouts/PageLayout";
-import {GlobalContextProvider} from "./GlobalContextProvider";
+import {EthContextProvider} from "./EthContextProvider";
 
 function App() {
 
     return (
         <>
             <>
-                <GlobalContextProvider>
+                <EthContextProvider>
                     <PageLayout>
                         <WatchPage/>
                     </PageLayout>
-                </GlobalContextProvider>
+                </EthContextProvider>
             </>
         </>
     )
