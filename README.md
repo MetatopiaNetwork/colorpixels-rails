@@ -37,3 +37,8 @@ edit credentials
 ```
 EDITOR="nano -w" rails credentials:edit 
 ```
+
+rarible dependencies
+```
+yarn add @rarible/protocol-ethereum-sdk eth-sig-util @ethereumjs/common @ethereumjs/tx @rarible/action @rarible/protocol-api-client ethereumjs-util tslib web3 web3-eth-contract web3-utils @rarible/types
+```

@@ -1,15 +1,28 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import {getLiveId} from "../bridge";
 import 'shaka-player/dist/controls.css';
 import VideoJSPlayer from "../components/players/VideoJSPlayer";
-import {Dropdown, Button} from 'react-bootstrap';
+import {Button, Dropdown} from 'react-bootstrap';
 import API from "../utils/API";
-
+import {customLazyMint721} from "../rarible/vanillaRarible";
+import {getWeb3} from "../web3";
+import {SDKLazyMint721} from "../rarible/SDKRarible";
 
 function WatchPage() {
 
     const [clipId, setClipId] = useState(null)
     const [clipInfo, setClipInfo] = useState(null)
+    const [lazyTokenId, setLazyTokenId] = useState(null)
+    const [ethAccount, setEthAccount] = useState(null)
+
+    useEffect(async () => {
+        if (ethAccount == null) {
+            const web3 = getWeb3()
+            const web3Accounts = await web3.eth.getAccounts();
+            const selectedWeb3Account = web3Accounts[0];
+            setEthAccount(selectedWeb3Account)
+        }
+    })
 
     return (
         <>
@@ -61,12 +74,34 @@ function WatchPage() {
 
                 </div>
             </div>
+            <div>
+                <div>ETH Account: {ethAccount}</div>
+                <Button
+                    onClick={async () => {
+                        if (ethAccount != null) {
+                            const clipUrl = "https://colorpixels-dev1.sfo3.digitaloceanspaces.com/5v67iyc2f67ckho272qkmgvo4rz7"
+                            // const clipUrl = "/ipfs/QmWLsBu6nS4ovaHbGAXprD1qEssJu4r5taQfB74sCG51tp"
+                            // const tokenId = await customLazyMint721(ethAccount, clipUrl)
+                            const tokenId = await SDKLazyMint721(ethAccount, "0x6ede7f3c26975aad32a475e1021d8f6f39c89d82", clipUrl)
+                            console.log(tokenId)
+                            setLazyTokenId(tokenId)
+                        } else {
+                            alert("ETH Account is null")
+                        }
+                    }}
+                >
+                    Test LazyMint
+                </Button>
+            </div>
+            <div>
+                Lazy Token Id: {JSON.stringify(lazyTokenId)}
+            </div>
 
             {!!clipId &&
             <div>
                 <h3>Clip ID#{clipId}</h3>
                 {!(clipInfo?.service_url) &&
-                <div style={{ color: "blue"}}>
+                <div style={{color: "blue"}}>
                     Clip is getting processed
                 </div>
                 }
@@ -87,9 +122,13 @@ function WatchPage() {
                 </div>
 
                 {!!(clipInfo?.service_url) &&
-                <div style={{ color: "green"}}>
-                    The clip is ready! <a href={clipInfo?.service_url} target="_blank"> View it</a>
-                </div>}
+                <>
+                    <div style={{color: "green"}}>
+                        The clip is ready! <a href={clipInfo?.service_url} target="_blank"> View it</a>
+                    </div>
+
+
+                </>}
             </div>}
 
 
