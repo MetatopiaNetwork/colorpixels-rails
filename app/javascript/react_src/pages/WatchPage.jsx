@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, {useContext, useEffect, useState} from "react"
 import {getLiveId} from "../bridge";
 import 'shaka-player/dist/controls.css';
 import VideoJSPlayer from "../components/players/VideoJSPlayer";
@@ -6,10 +6,12 @@ import {Button, Dropdown} from 'react-bootstrap';
 import API from "../utils/API";
 import {getWeb3} from "../web3";
 import {SDKLazyMint721} from "../rarible/SDKRarible";
-import { get721LazyNFTUrl} from "../rarible/raribleUtils"
+import {get721LazyNFTUrl} from "../rarible/raribleUtils"
+import {GlobalContext} from "../GlobalContextProvider";
 
 function WatchPage() {
 
+    const {var1, setVar1} = useContext(GlobalContext)
     const [clipId, setClipId] = useState(null)
     const [clipInfo, setClipInfo] = useState(null)
     const [lazyTokenId, setLazyTokenId] = useState(null)
@@ -75,9 +77,11 @@ function WatchPage() {
                 </div>
             </div>
             <div>
-                <div>ETH Account: {ethAccount}</div>
+                <div>Var1: {var1}</div>
+                <div>ETH Account: {ethAccount} </div>
                 <Button
                     onClick={async () => {
+                        setVar1("HELLO WORLD")
                         if (ethAccount != null) {
                             const clipUrl = "https://colorpixels-dev1.sfo3.digitaloceanspaces.com/5v67iyc2f67ckho272qkmgvo4rz7"
                             // const clipUrl = "/ipfs/QmWLsBu6nS4ovaHbGAXprD1qEssJu4r5taQfB74sCG51tp"
