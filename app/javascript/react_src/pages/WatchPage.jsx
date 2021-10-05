@@ -9,6 +9,7 @@ import AccountDisplay from "../components/AccountDisplay";
 import EventHeader from "../components/EventHeader";
 import LiveVideoWrapper from "../wrappers/LiveVideoWrapper";
 import ClipProcessingStatus from "../components/ClipProcessingStatus";
+import MintNftWrapper from "../wrappers/MintNftWrapper";
 
 function WatchPage() {
 
@@ -23,6 +24,7 @@ function WatchPage() {
             <EventHeader/>
             <AccountDisplay/>
             <LiveVideoWrapper/>
+            <MintNftWrapper/>
             <div>
                 <Button
                     onClick={async () => {
