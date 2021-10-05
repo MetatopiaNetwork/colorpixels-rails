@@ -1,6 +1,7 @@
 import React, {useContext} from "react"
 import {NFTContext} from "../providers/NFTContextProvider";
 import {get721LazyNFTUrl} from "../rarible/raribleUtils";
+import {Button} from "react-bootstrap";
 
 function ShowNFT() {
 	const {tokenId} = useContext(NFTContext)
@@ -8,11 +9,17 @@ function ShowNFT() {
         <>
             {tokenId != null &&
                 <div>
-                    <div>
-                        <h2>NFT</h2>
+                    <div style={{ marginTop: "10px"}}>
+                        <h2>NFT Ready</h2>
                     </div>
                     <div>
-                        <a href={get721LazyNFTUrl(tokenId)} target="_blank">See NFT on Rarible</a>
+                        <Button
+                            onClick={() => {
+                                window.open(get721LazyNFTUrl(tokenId), '_blank').focus();
+                            }}
+                        >
+                            See&nbsp;NFT
+                        </Button>
                     </div>
                 </div>
             }

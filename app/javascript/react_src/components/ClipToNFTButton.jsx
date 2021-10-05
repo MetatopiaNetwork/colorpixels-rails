@@ -15,7 +15,7 @@ function ClipToNFTButton() {
                     setDisabled(false)
                 }}
             >
-                Mint into NFT
+                Mint&nbsp;into&nbsp;NFT
             </Button>
         </>
     )
