@@ -54,12 +54,7 @@ function WatchPage() {
                 }
                 <Button
                     onClick={async () => {
-                        try {
-                            let response = await API.get('clip/' + clipId);
-                            setClipInfo(response.data)
-                        } catch (e) {
-                            console.log(e)
-                        }
+
                     }}
                 >
                     Check if clip is ready

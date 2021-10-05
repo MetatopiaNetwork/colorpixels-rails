@@ -1,6 +1,4 @@
 import React, {useContext} from "react"
-import API from "../utils/API";
-import {getLiveId} from "../bridge";
 import {Button} from "react-bootstrap";
 import {ClipContext} from "../providers/ClipContextProvider";
 
