@@ -29,12 +29,7 @@ function WatchPage() {
                 <Button
                     onClick={async () => {
                         if (ethAccount != null) {
-                            const clipUrl = "https://colorpixels-dev1.sfo3.digitaloceanspaces.com/5v67iyc2f67ckho272qkmgvo4rz7"
-                            // const clipUrl = "/ipfs/QmWLsBu6nS4ovaHbGAXprD1qEssJu4r5taQfB74sCG51tp"
-                            // const tokenId = await customLazyMint721(ethAccount, clipUrl)
-                            const tokenId = await SDKLazyMint721(ethAccount, "0x6ede7f3c26975aad32a475e1021d8f6f39c89d82", clipUrl)
-                            console.log(tokenId)
-                            setLazyTokenId(tokenId)
+
                         } else {
                             alert("ETH Account is null")
                         }
