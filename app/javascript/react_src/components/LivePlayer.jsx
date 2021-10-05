@@ -1,10 +1,12 @@
-import React from "react"
+import React, {useContext} from "react"
 import VideoJSPlayer from "./players/VideoJSPlayer";
+import {EventInfoContext} from "../providers/EventInfoProvider";
 
 function LivePlayer() {
+    const {streamUrl} = useContext(EventInfoContext)
     return (
         <>
-            <VideoJSPlayer src="https://cdn.livepeer.com/hls/274ecn88f1pocum0/index.m3u8"/>
+            <VideoJSPlayer src={streamUrl}/>
         </>
     )
 }

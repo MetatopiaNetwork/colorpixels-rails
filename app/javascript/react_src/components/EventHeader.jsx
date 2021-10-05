@@ -1,11 +1,13 @@
-import React from "react"
+import React, {useContext} from "react"
 import {getLiveId} from "../bridge";
+import {EventInfoContext} from "../providers/EventInfoProvider";
 
 function EventHeader() {
+    const { eventName } = useContext(EventInfoContext)
     return (
         <>
             <h1 style={{marginBottom: "0px"}}>
-                <i>EventName</i> Live Stream
+                <i>{eventName}</i> Live Stream
             </h1>
             <div style={{
                 color: "grey",
