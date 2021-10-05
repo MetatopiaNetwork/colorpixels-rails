@@ -8,23 +8,15 @@ import {getWeb3} from "../web3";
 import {SDKLazyMint721} from "../rarible/SDKRarible";
 import {get721LazyNFTUrl} from "../rarible/raribleUtils"
 import {GlobalContext} from "../GlobalContextProvider";
+import AccountDisplay from "../components/AccountDisplay";
 
 function WatchPage() {
 
-    const {var1, setVar1} = useContext(GlobalContext)
+    const {ethAccount} = useContext(GlobalContext)
     const [clipId, setClipId] = useState(null)
     const [clipInfo, setClipInfo] = useState(null)
     const [lazyTokenId, setLazyTokenId] = useState(null)
-    const [ethAccount, setEthAccount] = useState(null)
 
-    useEffect(async () => {
-        if (ethAccount == null) {
-            const web3 = getWeb3()
-            const web3Accounts = await web3.eth.getAccounts();
-            const selectedWeb3Account = web3Accounts[0];
-            setEthAccount(selectedWeb3Account)
-        }
-    })
 
     return (
         <>
@@ -43,6 +35,7 @@ function WatchPage() {
             }}>
                 <VideoJSPlayer src="https://cdn.livepeer.com/hls/274ecn88f1pocum0/index.m3u8"/>
 
+                <AccountDisplay/>
                 <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-end", marginTop: "20px"}}>
                     <Button
                         onClick={async () => {
@@ -77,11 +70,9 @@ function WatchPage() {
                 </div>
             </div>
             <div>
-                <div>Var1: {var1}</div>
                 <div>ETH Account: {ethAccount} </div>
                 <Button
                     onClick={async () => {
-                        setVar1("HELLO WORLD")
                         if (ethAccount != null) {
                             const clipUrl = "https://colorpixels-dev1.sfo3.digitaloceanspaces.com/5v67iyc2f67ckho272qkmgvo4rz7"
                             // const clipUrl = "/ipfs/QmWLsBu6nS4ovaHbGAXprD1qEssJu4r5taQfB74sCG51tp"
