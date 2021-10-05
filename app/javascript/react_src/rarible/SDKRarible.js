@@ -11,7 +11,7 @@ function getRariableSDK(env = DEFAULT_SELECTED_NETWORK.env) {
 
     const web3 = getWeb3()
 
-    raribleSDKinstance = createRaribleSdk(web3.currentProvider, env, {fetchApi: fetch})
+    raribleSDKinstance = createRaribleSdk(web3, env, {fetchApi: fetch})
     return raribleSDKinstance
 }
 
