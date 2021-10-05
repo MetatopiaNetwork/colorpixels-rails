@@ -12,7 +12,7 @@ function ShowNFT() {
                         <h2>NFT</h2>
                     </div>
                     <div>
-                        <a href={get721LazyNFTUrl(tokenId)}>See NFT on Rarible</a>
+                        <a href={get721LazyNFTUrl(tokenId)} target="_blank">See NFT on Rarible</a>
                     </div>
                 </div>
             }

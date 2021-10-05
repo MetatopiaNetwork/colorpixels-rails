@@ -30,6 +30,7 @@ function NFTContextProvider(props) {
         <>
             <NFTContext.Provider
                 value={{
+                    tokenId,
                     clipToNFT,
                     resetNFTToken,
                 }}
