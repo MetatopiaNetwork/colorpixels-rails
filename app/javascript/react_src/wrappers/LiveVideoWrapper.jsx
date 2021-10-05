@@ -1,6 +1,7 @@
 import React from "react"
 import LivePlayer from "../components/LivePlayer";
 import NFTClipButton from "../components/NFTClipButton";
+import ClipProcessingStatus from "../components/ClipProcessingStatus";
 
 function LiveVideoWrapper() {
     return (
@@ -11,9 +12,10 @@ function LiveVideoWrapper() {
                 maxWidth: "700px",
             }}>
                 <LivePlayer/>
-                <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-end", marginTop: "20px"}}>
+                <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-end", marginTop: "20px", marginBottom: "20px"}}>
                     <NFTClipButton/>
                 </div>
+                <ClipProcessingStatus/>
             </div>
         </>
     )

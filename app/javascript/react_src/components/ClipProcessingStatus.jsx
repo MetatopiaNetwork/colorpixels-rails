@@ -22,7 +22,7 @@ function ClipProcessingStatus() {
             </Alert>}
             {clipProcessingState == CLIP_STATE_READY &&
             <Alert variant="success">
-                Clip#{clipId} is ready. <a href={clipInfo.service_url}>View</a>
+                Clip#{clipId} is ready. <a href={clipInfo?.service_url}>View</a>
             </Alert>}
         </>
     )

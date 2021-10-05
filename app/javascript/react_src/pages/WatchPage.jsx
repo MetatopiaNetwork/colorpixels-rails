@@ -20,7 +20,6 @@ function WatchPage() {
 
     return (
         <>
-            <ClipProcessingStatus/>
             <EventHeader/>
             <AccountDisplay/>
             <LiveVideoWrapper/>
