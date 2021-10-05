@@ -10,6 +10,7 @@ import {get721LazyNFTUrl} from "../rarible/raribleUtils"
 import {EthContext} from "../EthContextProvider";
 import AccountDisplay from "../components/AccountDisplay";
 import EventHeader from "../components/EventHeader";
+import LiveVideoWrapper from "../wrappers/LiveVideoWrapper";
 
 function WatchPage() {
 
@@ -22,49 +23,11 @@ function WatchPage() {
     return (
         <>
             <EventHeader/>
-            <div style={{
-                backgroundColor: "white",
-                width: "100%",
-                maxWidth: "700px",
-            }}>
-                <VideoJSPlayer src="https://cdn.livepeer.com/hls/274ecn88f1pocum0/index.m3u8"/>
+
 
                 <AccountDisplay/>
-                <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-end", marginTop: "20px"}}>
-                    <Button
-                        onClick={async () => {
-                            try {
-                                let response = await API.post('clip', {
-                                    live_id: getLiveId(),
-                                    stream_url: "https://cdn.livepeer.com/hls/274ecn88f1pocum0/index.m3u8",
-                                });
-                                setClipId(response.data.id)
-                            } catch (e) {
-                                console.log(e)
-                            }
-
-                        }}
-                    >
-                        NFT Clip what just happened
-                    </Button>
-                    <div className="dropdown" style={{display: "none", marginLeft: "10px"}}>
-                        <Dropdown>
-                            <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                                Quick NFT Clip
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                <Dropdown.Item href="">Last 10 seconds</Dropdown.Item>
-                                <Dropdown.Item href="">Last 20 seconds</Dropdown.Item>
-                                <Dropdown.Item href="">Last 30 seconds</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </div>
-
-                </div>
-            </div>
+                <LiveVideoWrapper/>
             <div>
-                <div>ETH Account: {ethAccount} </div>
                 <Button
                     onClick={async () => {
                         if (ethAccount != null) {
