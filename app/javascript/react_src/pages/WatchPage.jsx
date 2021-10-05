@@ -4,7 +4,7 @@ import 'shaka-player/dist/controls.css';
 import VideoJSPlayer from "../components/players/VideoJSPlayer";
 import {Dropdown, Button} from 'react-bootstrap';
 import API from "../utils/API";
-import {lazyMint1155, lazyMint721, customLazyMint721} from "../rarible";
+import {lazyMint1155, lazyMint721, customLazyMint721} from "../rarible/vanillaRarible";
 
 function WatchPage() {
 
