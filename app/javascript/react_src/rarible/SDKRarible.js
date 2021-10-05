@@ -1,6 +1,7 @@
 import {getWeb3} from "../web3";
 import {createRaribleSdk} from "@rarible/protocol-ethereum-sdk";
 import {DEFAULT_SELECTED_NETWORK} from "./networks";
+import { Web3Ethereum } from "@rarible/web3-ethereum"
 
 let raribleSDKinstance = null
 
@@ -11,7 +12,8 @@ function getRariableSDK(env = DEFAULT_SELECTED_NETWORK.env) {
 
     const web3 = getWeb3()
 
-    raribleSDKinstance = createRaribleSdk(web3, env, {fetchApi: fetch})
+    // raribleSDKinstance = createRaribleSdk(web3, env, {fetchApi: fetch})
+    const raribleSDKinstance = createRaribleSdk(new Web3Ethereum({ web3 }), env)
     return raribleSDKinstance
 }
 

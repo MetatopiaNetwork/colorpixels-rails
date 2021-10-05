@@ -94,7 +94,7 @@ function WatchPage() {
                 </Button>
             </div>
             <div>
-                Lazy Token Id: {lazyTokenId}
+                Lazy Token Id: {JSON.stringify(lazyTokenId)}
             </div>
 
             {!!clipId &&
