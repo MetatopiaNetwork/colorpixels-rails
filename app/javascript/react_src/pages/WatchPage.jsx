@@ -8,6 +8,7 @@ import {EthContext} from "../providers/EthContextProvider";
 import AccountDisplay from "../components/AccountDisplay";
 import EventHeader from "../components/EventHeader";
 import LiveVideoWrapper from "../wrappers/LiveVideoWrapper";
+import ClipProcessingStatus from "../components/ClipProcessingStatus";
 
 function WatchPage() {
 
@@ -19,9 +20,10 @@ function WatchPage() {
 
     return (
         <>
+            <ClipProcessingStatus/>
             <EventHeader/>
-                <AccountDisplay/>
-                <LiveVideoWrapper/>
+            <AccountDisplay/>
+            <LiveVideoWrapper/>
             <div>
                 <Button
                     onClick={async () => {

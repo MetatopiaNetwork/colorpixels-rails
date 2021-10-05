@@ -50,6 +50,9 @@ function ClipContextProvider(props) {
             setClipProcessingState(CLIP_STATE_PROCESSING)
             await fetchClipInfo(resClipId, 10)
         } catch (e) {
+            setClipId(null)
+            setClipInfo(null)
+            setClipProcessingState(CLIP_STATE_FAILED)
             console.log(e)
         }
     }
