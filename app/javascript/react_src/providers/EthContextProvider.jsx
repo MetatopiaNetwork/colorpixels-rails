@@ -1,5 +1,5 @@
 import React, {createContext, useState} from "react"
-import {getWeb3} from "./web3";
+import {getWeb3} from "../web3";
 
 const EthContext = createContext(null);
 

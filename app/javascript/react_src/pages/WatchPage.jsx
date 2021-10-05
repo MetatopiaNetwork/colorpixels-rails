@@ -1,13 +1,10 @@
-import React, {useContext, useEffect, useState} from "react"
-import {getLiveId} from "../bridge";
+import React, {useContext, useState} from "react"
 import 'shaka-player/dist/controls.css';
-import VideoJSPlayer from "../components/players/VideoJSPlayer";
-import {Button, Dropdown} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import API from "../utils/API";
-import {getWeb3} from "../web3";
 import {SDKLazyMint721} from "../rarible/SDKRarible";
 import {get721LazyNFTUrl} from "../rarible/raribleUtils"
-import {EthContext} from "../EthContextProvider";
+import {EthContext} from "../providers/EthContextProvider";
 import AccountDisplay from "../components/AccountDisplay";
 import EventHeader from "../components/EventHeader";
 import LiveVideoWrapper from "../wrappers/LiveVideoWrapper";
@@ -23,8 +20,6 @@ function WatchPage() {
     return (
         <>
             <EventHeader/>
-
-
                 <AccountDisplay/>
                 <LiveVideoWrapper/>
             <div>
