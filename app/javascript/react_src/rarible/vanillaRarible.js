@@ -2,7 +2,7 @@ import {getWeb3} from "../web3";
 import {getHttpClient} from "../httpClient";
 import {DEFAULT_SELECTED_NETWORK} from "./networks";
 
-async function customLazyMint721(creatorAddr, uri, value = 10000, selectedNetwork = DEFAULT_SELECTED_NETWORK) {
+async function customLazyMint721(creatorAddr, uri, nftPrice = "10000", selectedNetwork = DEFAULT_SELECTED_NETWORK) {
     const baseEndpoint = selectedNetwork.api_endpoint
     const contractAddress = selectedNetwork.ERC721_contract
     const client = getHttpClient(baseEndpoint)
@@ -14,21 +14,46 @@ async function customLazyMint721(creatorAddr, uri, value = 10000, selectedNetwor
     const s = res.data.signature.s
     const v = res.data.signature.v
 
-    const payload = get721Payload(contractAddress, selectedNetwork.chain_id, tokenID, uri, creatorAddr, "1000")
+    const payload = get721Payload(contractAddress, selectedNetwork.chain_id, tokenID, uri, creatorAddr, nftPrice)
 
     const web3 = getWeb3()
+    console.log(web3)
     const signature = await web3SignPayload(web3, creatorAddr, payload)
     console.log("signature: " + signature)
+
+    const params = create721LazyNFTParams(contractAddress, tokenID, uri, creatorAddr, signature, nftPrice)
+
 }
 
-async function web3SignPayload(web3Provider, creatorAddr, payload) {
+async function create721LazyNFTParams(contractAddr, tokenId, uri, creatorAddr, signature, nftPrice) {
+    const params = {
+        "@type": "ERC721",
+        "contract": contractAddr,// "0xB0EA149212Eb707a1E5FC1D2d3fD318a8d94cf05",
+        "tokenId": tokenId,
+        "uri": uri, // "/ipfs/QmWLsBu6nS4ovaHbGAXprD1qEssJu4r5taQfB74sCG51tp",
+        "creators": [
+            {
+                account: creatorAddr, //"0x1234...",
+                value: nftPrice, // "10000"
+            }
+        ],
+        // "royalties": [{account: "0x1234...", value: 2000}],
+        "royalties": [],
+        "signatures": [signature]
+    }
+
+    return params
+}
+
+async function web3SignPayload(web3, creatorAddr, payload) {
     const msgData = JSON.stringify(payload);
-    const signature = await web3Provider.send("eth_signTypedData_v4", [creatorAddr, msgData]);
+    const response = await web3.currentProvider.send("eth_signTypedData_v4", [creatorAddr, msgData]);
+    const signature = response.result
     return signature
 }
 
 
-function get721Payload(verifyingContract, chainID, tokenId, uri, creatorAddr, nftPrice = "10000") {
+function get721Payload(contractAddr, chainID, tokenId, uri, creatorAddr, nftPrice) {
     const payload = {
         "types": {
             "EIP712Domain": [
@@ -64,12 +89,12 @@ function get721Payload(verifyingContract, chainID, tokenId, uri, creatorAddr, nf
             name: "Mint721",
             version: "1",
             chainId: chainID,
-            verifyingContract: verifyingContract, // "0xB0EA149212Eb707a1E5FC1D2d3fD318a8d94cf05"
+            verifyingContract: contractAddr, // "0xB0EA149212Eb707a1E5FC1D2d3fD318a8d94cf05"
         },
         "primaryType": "Mint721",
         "message": {
             "@type": "ERC721",
-            "contract": verifyingContract,
+            "contract": contractAddr,
             "tokenId": tokenId,
             "tokenURI": uri, // /ipfs/QmWLsBu6nS4ovaHbGAXprD1qEssJu4r5taQfB74sCG51tp
             "uri": uri,
