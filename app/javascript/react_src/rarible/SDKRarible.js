@@ -19,21 +19,20 @@ function getRariableSDK(env = DEFAULT_SELECTED_NETWORK.env) {
 
 async function SDKLazyMint721(creatorAddress, contractAddress, uri, value = 10000) {
     const raribleSDK = getRariableSDK()
-    const tokenId = await raribleSDK.nft.mint({
+    const response = await raribleSDK.nft.mint({
         collection: {
             id: contractAddress,
             type: "ERC721",
             supportsLazyMint: true,
-            // features: {},
             features: "MINT_AND_TRANSFER"
         },
-        // features: {},
         uri: uri,
         creators: [{account: creatorAddress, value: value}],
         royalties: [],
         lazy: true,
     })
 
+    const tokenId = response.tokenId
     return tokenId
 }
 
