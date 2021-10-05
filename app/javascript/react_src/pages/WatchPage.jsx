@@ -4,9 +4,9 @@ import 'shaka-player/dist/controls.css';
 import VideoJSPlayer from "../components/players/VideoJSPlayer";
 import {Button, Dropdown} from 'react-bootstrap';
 import API from "../utils/API";
-import {customLazyMint721} from "../rarible/vanillaRarible";
 import {getWeb3} from "../web3";
 import {SDKLazyMint721} from "../rarible/SDKRarible";
+import { get721LazyNFTUrl} from "../rarible/raribleUtils"
 
 function WatchPage() {
 
@@ -94,7 +94,7 @@ function WatchPage() {
                 </Button>
             </div>
             <div>
-                Lazy Token Id: {JSON.stringify(lazyTokenId)}
+                Lazy Token Id: <a href={get721LazyNFTUrl(lazyTokenId)}>{lazyTokenId}</a>
             </div>
 
             {!!clipId &&
