@@ -4,7 +4,7 @@ import 'shaka-player/dist/controls.css';
 import VideoJSPlayer from "../components/players/VideoJSPlayer";
 import {Dropdown, Button} from 'react-bootstrap';
 import API from "../utils/API";
-import {lazyMint721} from "../rarible";
+import {lazyMint1155, lazyMint721, customLazyMint721} from "../rarible";
 
 function WatchPage() {
 
@@ -65,9 +65,9 @@ function WatchPage() {
             <div>
                 <Button
                     onClick={async () => {
-                        // const clipUrl = "https://colorpixels-dev1.sfo3.digitaloceanspaces.com/5v67iyc2f67ckho272qkmgvo4rz7"
-                        const clipUrl = "/ipfs/QmWLsBu6nS4ovaHbGAXprD1qEssJu4r5taQfB74sCG51tp"
-                        const tokenId = await lazyMint721("0xB4D6B7757d88BA7EBCB6663E91E98FA352C53E12", clipUrl)
+                        const clipUrl = "https://colorpixels-dev1.sfo3.digitaloceanspaces.com/5v67iyc2f67ckho272qkmgvo4rz7"
+                        // const clipUrl = "/ipfs/QmWLsBu6nS4ovaHbGAXprD1qEssJu4r5taQfB74sCG51tp"
+                        const tokenId = await customLazyMint721("0xB4D6B7757d88BA7EBCB6663E91E98FA352C53E12", clipUrl)
                         console.log(tokenId)
                         setLazyTokenId(tokenId)
                     }}
