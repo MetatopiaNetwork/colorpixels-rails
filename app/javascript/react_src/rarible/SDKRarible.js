@@ -1,29 +1,31 @@
 import {getWeb3} from "../web3";
 import {createRaribleSdk} from "@rarible/protocol-ethereum-sdk";
+import {DEFAULT_SELECTED_NETWORK} from "./networks";
 
 let raribleSDKinstance = null
 
 // env: 'ropsten' | 'rinkeby' | 'mainnet' | 'e2e'
-function getRariableSDK(env = SELECTED_NETWORK.env) {
+function getRariableSDK(env = DEFAULT_SELECTED_NETWORK.env) {
     if (!!raribleSDKinstance)
         return raribleSDKinstance
 
     const web3 = getWeb3()
 
-    raribleSDKinstance = createRaribleSdk(web3, env, {fetchApi: fetch})
+    raribleSDKinstance = createRaribleSdk(web3.currentProvider, env, {fetchApi: fetch})
     return raribleSDKinstance
 }
 
-async function SDKLazyMint721(creatorAddress, uri, value = 10000, contractAddress) {
+async function SDKLazyMint721(creatorAddress, contractAddress, uri, value = 10000) {
     const raribleSDK = getRariableSDK()
     const tokenId = await raribleSDK.nft.mint({
         collection: {
             id: contractAddress,
             type: "ERC721",
             supportsLazyMint: true,
-            features: {},
+            // features: {},
+            features: "MINT_AND_TRANSFER"
         },
-        features: {},
+        // features: {},
         uri: uri,
         creators: [{account: creatorAddress, value: value}],
         royalties: [],

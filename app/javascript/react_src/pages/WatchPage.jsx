@@ -6,6 +6,7 @@ import {Button, Dropdown} from 'react-bootstrap';
 import API from "../utils/API";
 import {customLazyMint721} from "../rarible/vanillaRarible";
 import {getWeb3} from "../web3";
+import {SDKLazyMint721} from "../rarible/SDKRarible";
 
 function WatchPage() {
 
@@ -80,7 +81,8 @@ function WatchPage() {
                         if (ethAccount != null) {
                             const clipUrl = "https://colorpixels-dev1.sfo3.digitaloceanspaces.com/5v67iyc2f67ckho272qkmgvo4rz7"
                             // const clipUrl = "/ipfs/QmWLsBu6nS4ovaHbGAXprD1qEssJu4r5taQfB74sCG51tp"
-                            const tokenId = await customLazyMint721(ethAccount, clipUrl)
+                            // const tokenId = await customLazyMint721(ethAccount, clipUrl)
+                            const tokenId = await SDKLazyMint721(ethAccount, "0x6ede7f3c26975aad32a475e1021d8f6f39c89d82", clipUrl)
                             console.log(tokenId)
                             setLazyTokenId(tokenId)
                         } else {
