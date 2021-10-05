@@ -1,7 +1,7 @@
 import React from "react"
 import {Dropdown} from "react-bootstrap";
 
-function NFTClipDropdown() {
+function ClipDropdown() {
     return (
         <>
 
@@ -9,7 +9,7 @@ function NFTClipDropdown() {
             <div className="dropdown" style={{display: "none", marginLeft: "10px"}}>
                 <Dropdown>
                     <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                        Quick NFT Clip
+                        Quick Clip
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
@@ -24,4 +24,4 @@ function NFTClipDropdown() {
     )
 }
 
-export default NFTClipDropdown
+export default ClipDropdown
