@@ -6,6 +6,11 @@ class Api::EventController < Api::AuthController
     render json: current_event, status: 200
   end
 
+  # GET api/event/clips/:live_id
+  def clips
+    render json: current_event.clip, :methods => [:service_url, :relative_url], status: 200
+  end
+
   private
 
   def event_is_present
