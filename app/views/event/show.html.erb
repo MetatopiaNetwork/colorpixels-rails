@@ -6,7 +6,7 @@
 
   <div class="cp-card">
     <div style="display: flex; justify-content: space-between; align-items: center">
-      <div>Live ID: <span class="subtitle-color" style="font-weight: bold; font-size: 12px"><%= @event.live_id %></span></div>
+      <div>Live ID: <span class="subtitle-color" style="font-weight: bold; font-variant: all-small-caps;"><%= @event.live_id %></span></div>
       <div>
         <a href="/live/<%= @event.live_id %>" target="_blank" class="btn btn-primary">
           <strong>
@@ -23,6 +23,9 @@
         <%= f.text_field :stream_url, value: @event.stream_url %>
         <%= f.submit "Update", class: "btn btn-primary" %>
       <% end %>
+    </div>
+    <div class="cp-small-light-text">
+      Expected URL format: https://cdn.livepeer.com/hls/274ecn88f1pocum0/index.m3u8
     </div>
   </div>
 
