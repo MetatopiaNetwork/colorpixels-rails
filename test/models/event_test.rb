@@ -25,4 +25,9 @@ class EventTest < ActiveSupport::TestCase
       event.save!
     end
   end
+
+  test "#clips returns associated clips" do
+    event = events(:regular_event)
+    assert event.clip.length >= 1
+  end
 end

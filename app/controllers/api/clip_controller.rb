@@ -16,7 +16,18 @@ class Api::ClipController < Api::AuthController
     render json: clip, status: 200
   end
 
+  # PATCH /api/clip/:id
+  def update
+    clip = Clip.find(params[:id])
+    clip.update!(permit_update_params)
+    render json: clip
+  end
+
   private
+
+  def permit_update_params
+    params.permit(:minter_eth_addr, :token_id, :contract_id, :network_env)
+  end
 
   def event_is_present
     render status: :unauthorized, json: { error: "live_id is missing." } unless current_event.present?

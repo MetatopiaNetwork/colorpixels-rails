@@ -8,7 +8,7 @@
   <h2>Events</h2>
   <div>
 
-    <% @creator.events.each do |event| %>
+    <% @creator.events.order(id: :desc).each do |event| %>
       <div class="cp-card" style="display: flex; justify-content: space-between; align-items: center">
         <h4 style="color: #585858; font-variant: small-caps;"><%= event.name %></h4>
         <%= link_to "View", event_show_url(event.id), class: "btn btn-primary" %>

@@ -3,6 +3,10 @@ class Clip < ApplicationRecord
 
   has_one_attached :video
 
+  def rarible_url
+    return "" unless network_env.present? && contract_id.present? && token_id.present?
+    return "https://#{network_env}.rarible.com/token/#{contract_id}:#{token_id}?tab=owners"
+  end
 
   # a relative URL that proxies the file through this rails server.
   def relative_url

@@ -40,4 +40,26 @@ class ClipTest < ActiveSupport::TestCase
 
     assert_match /\/clip\.mp4/, clip.relative_url
   end
+
+  test "rarible_url works" do
+    clip = Clip.new(
+        event: events(:regular_event),
+        token_id: "token_id",
+        contract_id: "contract_id",
+        network_env: "rinkeby",
+    )
+    clip.save!
+
+    assert_equal "https://rinkeby.rarible.com/token/contract_id:token_id?tab=owners", clip.rarible_url
+  end
+
+  test "minter_eth_addr works" do
+    clip = Clip.new(
+        event: events(:regular_event),
+        minter_eth_addr: "0x1233214"
+    )
+    clip.save!
+
+    assert_equal "0x1233214", clip.minter_eth_addr
+  end
 end

@@ -15,6 +15,18 @@ class ClipControllerTest < ActionDispatch::IntegrationTest
     assert_equal event.stream_url, data[:stream_url]
   end
 
+  test "#clips returns all clips" do
+    event = events(:regular_event)
+    clip_count = event.clip.length
+
+    get api_event_clips_path(event.live_id)
+
+    assert_response :success
+    data = JSON.parse(response.body, symbolize_names: true)
+
+    assert_equal clip_count, data.length
+  end
+
   test "#show returns 401 when event does not exists" do
     get api_event_show_path(401)
 

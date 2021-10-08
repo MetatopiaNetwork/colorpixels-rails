@@ -7,7 +7,7 @@ function EventHeader() {
     return (
         <>
             <h1 style={{marginBottom: "0px"}}>
-                <i>{eventName}</i> Live Stream
+                {eventName}
             </h1>
             <div style={{
                 color: "grey",

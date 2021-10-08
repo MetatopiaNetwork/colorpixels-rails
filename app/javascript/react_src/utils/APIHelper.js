@@ -1,11 +1,7 @@
-import axios from "axios"
-
-const instance = axios.create({
-    baseURL: "/api/"
-})
+import API from "./API";
 
 async function saveNFTinBackend(clipId, ethAccount, tokenId, contractId, networkEnv) {
-    await instance.patch("clip/" + clipId, {
+    await API.patch("clip/" + clipId, {
         token_id: tokenId,
         contract_id: contractId,
         network_env: networkEnv,
@@ -14,4 +10,4 @@ async function saveNFTinBackend(clipId, ethAccount, tokenId, contractId, network
 }
 
 // export your axios instance to use within your app
-export default instance
+export {saveNFTinBackend }

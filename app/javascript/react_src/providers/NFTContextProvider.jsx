@@ -1,8 +1,9 @@
 import React, {createContext, useContext, useState} from "react"
-import {getWeb3} from "../web3";
 import {ClipContext} from "./ClipContextProvider";
 import {EthContext} from "./EthContextProvider";
 import {SDKLazyMint721} from "../rarible/SDKRarible";
+import {DEFAULT_SELECTED_NETWORK} from "../rarible/networks";
+import {saveNFTinBackend} from "../utils/APIHelper";
 
 const NFTContext = createContext(null);
 
@@ -18,10 +19,11 @@ function NFTContextProvider(props) {
             // const clipUrl = "/ipfs/QmWLsBu6nS4ovaHbGAXprD1qEssJu4r5taQfB74sCG51tp"
             if (clipUrl != null) {
                 const tokenId = await SDKLazyMint721(ethAccount, clipUrl)
+                await saveNFTinBackend(clipInfo.id, ethAccount, tokenId, DEFAULT_SELECTED_NETWORK.ERC721_contract, DEFAULT_SELECTED_NETWORK.env)
                 setTokenId(tokenId)
             }
         } catch (e) {
-            console.error(e)
+            console.log(e)
         }
     }
 

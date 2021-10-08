@@ -1,5 +1,5 @@
 import React, {useContext} from "react"
-import {Alert} from "react-bootstrap";
+import {Alert, Spinner} from "react-bootstrap";
 import {
     CLIP_STATE_FAILED,
     CLIP_STATE_PROCESSING,
@@ -14,7 +14,10 @@ function ClipProcessingStatus() {
         <>
             {clipProcessingState == CLIP_STATE_PROCESSING &&
             <Alert variant="primary">
-                Clip#{clipId} is processing
+                <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+                    <div>Clip#{clipId} is processing</div>
+                    <Spinner animation="grow" variant="primary"/>
+                </div>
             </Alert>}
             {clipProcessingState == CLIP_STATE_FAILED &&
             <Alert variant="danger">
