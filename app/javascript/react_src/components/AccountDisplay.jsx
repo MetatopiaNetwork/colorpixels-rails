@@ -13,7 +13,7 @@ function AccountDisplay() {
     return (
         <>
             {!ethConnected && <>
-                <div>
+                <div style={{marginBottom: "10px"}}>
                     <Button
 
                         onClick={() => {connectEthAccount()}}
