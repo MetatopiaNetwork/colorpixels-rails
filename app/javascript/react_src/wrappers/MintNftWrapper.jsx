@@ -30,7 +30,11 @@ function MintNftWrapper() {
                     flexDirection: "row",
                 }}>
                     <div style={{flexGrow: 2}}>
-                        {displayVid && <VideoJSPlayer src={clipInfo?.relative_url} autoplay={false} />}
+                        {displayVid &&
+                        <div style={{ maxWidth: "500px"}}>
+                            <VideoJSPlayer src={clipInfo?.relative_url} autoplay={false}/>
+                        </div>
+                        }
                         {!displayVid && <Spinner animation="grow" variant="primary"/>}
                         <div>
                             <a href={''} onClick={reloadVid}>Fetch Clip</a>
