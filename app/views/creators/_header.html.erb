@@ -1,0 +1,6 @@
+<div class="header-box">
+  <div style="display: flex; justify-content: space-between; align-items: center">
+    <img src="<%= asset_path('logo/logo-with-text.png') %>" height="50px"/>
+    <%= link_to "Sign Out", destroy_creator_session_path, method: :delete, class: "btn btn-primary" %>
+  </div>
+</div>
