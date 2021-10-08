@@ -6,10 +6,12 @@ import LiveVideoWrapper from "../wrappers/LiveVideoWrapper";
 import MintNftWrapper from "../wrappers/MintNftWrapper";
 import ClipList from "../components/ClipList";
 import {Col, Container, Row} from "react-bootstrap";
+import LogoHeader from "../components/LogoHeader";
 
 function WatchPage() {
     return (
         <>
+            <LogoHeader/>
             <Container fluid>
                 <Row>
                     <Col sm={8}>
