@@ -19,7 +19,7 @@ class ClipLiveSegmentJob < ApplicationJob
     path = tempfile.path
 
 
-    system("ffmpeg", "-live_start_index","1","-sseof","-20","-t","20","-i", hls_url, path, "-y")
+    system("ffmpeg", "-live_start_index","1","-sseof","-20","-t","15","-i", hls_url, path, "-y")
 
     return tempfile
   end
