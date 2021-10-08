@@ -32,7 +32,7 @@ function MintNftWrapper() {
                     <div style={{flexGrow: 2}}>
                         {displayVid &&
                         <div style={{ maxWidth: "500px"}}>
-                            <VideoJSPlayer src={clipInfo?.relative_url} autoplay={false}/>
+                            <VideoJSPlayer src={clipInfo?.relative_url} autoplay={false} width={500} height={300}/>
                         </div>
                         }
                         {!displayVid && <Spinner animation="grow" variant="primary"/>}

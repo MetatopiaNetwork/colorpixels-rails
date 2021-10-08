@@ -9,6 +9,16 @@ function VideoJSPlayer(props) {
         autoplay = props.autoplay
     }
 
+    let width = "auto"
+    if (props?.width != null) {
+        width = props.width
+    }
+
+    let height = "auto"
+    if (props?.height != null) {
+        height = props.height
+    }
+
     let thePlayer = undefined
 
     function onPlayerReady(player) {
@@ -24,6 +34,8 @@ function VideoJSPlayer(props) {
     return (
         <div>
             <VideoPlayer
+                width={width}
+                height={height}
                 className="video-js-player-wrap"
                 controls={true}
                 autoplay={autoplay}
