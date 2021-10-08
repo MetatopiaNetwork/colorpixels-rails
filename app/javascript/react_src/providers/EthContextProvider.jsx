@@ -8,11 +8,16 @@ function EthContextProvider(props) {
     const [ethAccount, setEthAccount] = useState(null)
 
     async function connectEthAccount() {
+        try {
         const web3 = getWeb3();
         const web3Accounts = await web3.eth.getAccounts();
         const selectedWeb3Account = web3Accounts[0];
         setEthAccount(selectedWeb3Account)
         setEthConnected(true)
+        } catch (e) {
+            console.log("unable to connect web3 provider")
+            console.log(e)
+        }
     }
 
     connectEthAccount()
