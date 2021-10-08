@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     get 'clip/:id', to: "clip#show"
     post 'clip', to: "clip#create"
+    get 'event/:live_id', to: "event#show", as: :event_show
   end
 
   unauthenticated do
