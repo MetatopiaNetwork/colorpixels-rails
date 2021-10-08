@@ -18,7 +18,17 @@ class EventController < ApplicationController
     redirect_to '/'
   end
 
+  def update
+    @event = Event.find(param_id)
+    @event.update!(permitted_params)
+    redirect_to event_show_path(@event.id)
+  end
+
   private
+
+  def param_id
+    params[:event][:id]
+  end
 
   def permitted_params
     params.require(:event).permit(:name, :stream_url)

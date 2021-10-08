@@ -1,19 +1,27 @@
-<div>
-  Hello creator: <%= @creator.username %>
-</div>
+<%= render 'shared/header' %>
 
-<div>
-  Events:
-  <ul>
+<div class="cp-wrap">
+  <div class="cp-card" style="text-align: center">
+    <h1>Hello <%= @creator.username %></h1>
+  </div>
+
+  <h2>Events</h2>
+  <div>
+
     <% @creator.events.each do |event| %>
-      <li><%= link_to event.name, event_show_url(event.id) %></li>
+      <div class="cp-card" style="display: flex; justify-content: space-between; align-items: center">
+        <h4 style="color: #585858; font-variant: small-caps;"><%= event.name %></h4>
+        <%= link_to "View", event_show_url(event.id), class: "btn btn-primary" %>
+      </div>
     <% end %>
     <% if @creator.events.blank? %>
-      <li>No events</li>
+      <div class="cp-card">
+        No events
+      </div>
     <% end %>
-  </ul>
-</div>
+  </div>
 
-<div>
-  <%= link_to 'Create event', event_new_url %>
+  <div>
+    <%= link_to 'Create new event', event_new_url, class: "btn btn-primary" %>
+  </div>
 </div>
