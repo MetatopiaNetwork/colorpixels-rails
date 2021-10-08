@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+.login-box {
+    max-width: 600px;
+    margin: auto;
+    margin-top: 50px;
+    padding: 30px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.global-style {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
