@@ -33,7 +33,7 @@ function MintNftWrapper() {
                         {displayVid && <VideoJSPlayer src={clipInfo?.relative_url} autoplay={false} />}
                         {!displayVid && <Spinner animation="grow" variant="primary"/>}
                         <div>
-                            <a href={''} onClick={reloadVid}>Retry</a>
+                            <a href={''} onClick={reloadVid}>Fetch Clip</a>
                         </div>
                     </div>
 
