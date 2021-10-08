@@ -48,7 +48,7 @@ function ClipContextProvider(props) {
             setClipId(resClipId)
             setClipInfo(null)
             setClipProcessingState(CLIP_STATE_PROCESSING)
-            await fetchClipInfo(resClipId, 10)
+            await fetchClipInfo(resClipId, 100)
         } catch (e) {
             setClipId(null)
             setClipInfo(null)
