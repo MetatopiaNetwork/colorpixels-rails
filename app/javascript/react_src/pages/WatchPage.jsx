@@ -14,13 +14,13 @@ function WatchPage() {
             <LogoHeader/>
             <Container fluid>
                 <Row>
-                    <Col sm={8}>
+                    <Col sm={7}>
                         <EventHeader/>
                         <AccountDisplay/>
                         <LiveVideoWrapper/>
                         <MintNftWrapper/>
                     </Col>
-                    <Col sm={4}>
+                    <Col sm={5}>
                         <ClipList/>
                     </Col>
                 </Row>
