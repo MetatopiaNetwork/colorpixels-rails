@@ -1,12 +1,15 @@
 <div class="login-box">
-  <img src="<%= asset_path('logo/logo-with-text.png') %>" width="500px"/>
-  <h1>Live Streaming & NFTs</h1>
-  <p>
-    Start a live stream and allow you audience to mint NFTs!
+  <div style=" margin-bottom: 10px">
+    <img src="<%= asset_path('logo/logo-with-text.png') %>" width="300px"/>
+  </div>
+  <h1>Decentralized Live Streaming Platform</h1>
+  <p class="subtitle-color">
+    Start a live stream and allow you audience to mint NFTs of the best moments!
   </p>
   <p>
-    <%= link_to "Log In", new_creator_session_path, class: "" %> |
-    <%= link_to "Sign Up", new_creator_registration_path, class: "" %>
+    <%= link_to "Sign Up", new_creator_registration_path, class: "" %> |
+    <%= link_to "Log In", new_creator_session_path, class: "" %>
+
   </p>
 </div>
 
