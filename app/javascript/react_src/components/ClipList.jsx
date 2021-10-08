@@ -24,10 +24,20 @@ function ClipList() {
     for (var i = 0; i < clips.length; i++) {
         const clip = clips[i]
         const element = <div key={"clip-" + i}>
+            {i == 0 && <br/>}
+            {i != 0 && <hr/>}
             <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
                 <h4>Clip#{clip.id}</h4>
                 <a href={clip.service_url}>Download</a>
             </div>
+            {clip.minter_eth_addr != null &&
+            <div>
+                minter: {clip.minter_eth_addr}
+            </div>}
+            {clip?.rarible_url != "" &&
+            <div>
+                <a href={clip.rarible_url} target="_blank">See on Rarible</a>
+            </div>}
         </div>
 
         clipRows.push(element);

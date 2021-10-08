@@ -8,7 +8,7 @@ class Api::EventController < Api::AuthController
 
   # GET api/event/clips/:live_id
   def clips
-    render json: current_event.clip.order(id: :desc), :methods => [:service_url, :relative_url], status: 200
+    render json: current_event.clip.order(id: :desc), :methods => [:service_url, :relative_url, :rarible_url], status: 200
   end
 
   private
