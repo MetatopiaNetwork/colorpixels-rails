@@ -31,7 +31,21 @@
 .subtitle-color {
     color: #666666;
 }
-
 .global-style {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.cp-card {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-bottom: 10px;
+}
+
+.cp-wrap {
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
