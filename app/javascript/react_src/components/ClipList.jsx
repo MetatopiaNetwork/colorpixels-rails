@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 import {Button} from "react-bootstrap";
 import API from "../utils/API";
 import {getLiveId} from "../bridge";
+import VideoJSPlayer from "./players/VideoJSPlayer";
 
 function ClipList() {
     const [clips, setClips] = useState([])
@@ -28,16 +29,22 @@ function ClipList() {
             {i != 0 && <hr/>}
             <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
                 <h4>Clip#{clip.id}</h4>
-                <a href={clip.service_url}>Download</a>
+
+                {clip?.rarible_url != "" &&
+                <div>
+                    <a href={clip.rarible_url} target="_blank">See on Rarible</a>
+                </div>}
             </div>
+            {clip.relative_url != null && <div>
+                <VideoJSPlayer src={clip.relative_url} autoplay={false} />
+            </div>}
             {clip.minter_eth_addr != null &&
             <div>
                 minter: {clip.minter_eth_addr}
             </div>}
-            {clip?.rarible_url != "" &&
             <div>
-                <a href={clip.rarible_url} target="_blank">See on Rarible</a>
-            </div>}
+                <a href={clip.service_url}>Download</a>
+            </div>
         </div>
 
         clipRows.push(element);

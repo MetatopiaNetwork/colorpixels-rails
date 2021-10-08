@@ -1,17 +1,27 @@
-import React, {useContext} from "react"
+import React, {useContext, useState} from "react"
 import {CLIP_STATE_READY, ClipContext} from "../providers/ClipContextProvider";
 import ClipToNFTButton from "../components/ClipToNFTButton";
 import ShowNFT from "../components/ShowNFT";
-import {Button} from "react-bootstrap";
+import {Button, Spinner} from "react-bootstrap";
+import VideoJSPlayer from "../components/players/VideoJSPlayer";
+import {delay} from "../utils/toolbox";
 
 function MintNftWrapper() {
     const {clipProcessingState, clipInfo} = useContext(ClipContext)
+
+    const [displayVid, setDisplayVid] = useState(true)
+
+    async function reloadVid(e) {
+        e.preventDefault()
+        setDisplayVid(false)
+        await delay(3)
+        setDisplayVid(true)
+    }
 
     return (
         <>
             {clipProcessingState == CLIP_STATE_READY &&
             <div style={{
-                backgroundColor: "white",
                 width: "100%",
                 maxWidth: "700px",
             }}>
@@ -20,11 +30,13 @@ function MintNftWrapper() {
                     flexDirection: "row",
                 }}>
                     <div style={{flexGrow: 2}}>
-                        <video style={{width: "100%"}} controls>
-                            <source src={clipInfo?.service_url} type="video/mp4"/>
-                            Your browser does not support the video tag.
-                        </video>
+                        {displayVid && <VideoJSPlayer src={clipInfo?.relative_url} autoplay={false} />}
+                        {!displayVid && <Spinner animation="grow" variant="primary"/>}
+                        <div>
+                            <a href={''} onClick={reloadVid}>Retry</a>
+                        </div>
                     </div>
+
 
                     <div style={{marginLeft: "10px"}}>
                         <div>

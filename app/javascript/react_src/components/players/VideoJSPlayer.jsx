@@ -4,6 +4,10 @@ import "./video-js.css"
 
 
 function VideoJSPlayer(props) {
+    let autoplay = true
+    if (props?.autoplay != null) {
+        autoplay = props.autoplay
+    }
 
     let thePlayer = undefined
 
@@ -22,7 +26,7 @@ function VideoJSPlayer(props) {
             <VideoPlayer
                 className="video-js-player-wrap"
                 controls={true}
-                autoplay={true}
+                autoplay={autoplay}
                 hideControls={['playbackrates']}
                 // onReady={onPlayerReady}
                 // onTimeUpdate={onVideoTimeUpdate}
