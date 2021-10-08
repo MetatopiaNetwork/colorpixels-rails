@@ -6,7 +6,7 @@ function LivePlayer() {
     const {streamUrl} = useContext(EventInfoContext)
     return (
         <>
-            <VideoJSPlayer src={streamUrl} width="200px" height="200px"/>
+            <VideoJSPlayer src={streamUrl} width={700} height={400}/>
         </>
     )
 }

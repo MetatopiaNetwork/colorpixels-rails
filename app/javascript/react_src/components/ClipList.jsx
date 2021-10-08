@@ -36,7 +36,7 @@ function ClipList() {
                 </div>}
             </div>
             {clip.relative_url != null && <div>
-                <VideoJSPlayer src={clip.relative_url} autoplay={false} width={200} height={150} />
+                <VideoJSPlayer src={clip.relative_url} autoplay={false} width={370} height={200} />
             </div>}
             {clip.minter_eth_addr != null &&
             <div>
