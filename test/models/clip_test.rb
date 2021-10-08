@@ -53,13 +53,13 @@ class ClipTest < ActiveSupport::TestCase
     assert_equal "https://rinkeby.rarible.com/token/contract_id:token_id?tab=owners", clip.rarible_url
   end
 
-  test "creator_eth_addr works" do
+  test "minter_eth_addr works" do
     clip = Clip.new(
         event: events(:regular_event),
-        creator_eth_addr: "0x1233214"
+        minter_eth_addr: "0x1233214"
     )
     clip.save!
 
-    assert_equal "0x1233214", clip.creator_eth_addr
+    assert_equal "0x1233214", clip.minter_eth_addr
   end
 end

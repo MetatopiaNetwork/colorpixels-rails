@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_10_08_154247) do
     t.bigint "event_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "creator_eth_addr"
+    t.string "minter_eth_addr"
     t.string "token_id"
     t.string "contract_id"
     t.string "network_env"

@@ -26,7 +26,7 @@ class Api::ClipController < Api::AuthController
   private
 
   def permit_update_params
-    params.permit(:creator_eth_addr, :token_id, :contract_id, :network_env)
+    params.permit(:minter_eth_addr, :token_id, :contract_id, :network_env)
   end
 
   def event_is_present

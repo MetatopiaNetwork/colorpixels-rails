@@ -23,7 +23,6 @@ class ClipControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     data = JSON.parse(response.body, symbolize_names: true)
-    puts data
 
     assert_equal clip_count, data.length
   end

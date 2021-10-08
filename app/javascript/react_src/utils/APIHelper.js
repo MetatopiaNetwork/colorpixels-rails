@@ -5,7 +5,7 @@ async function saveNFTinBackend(clipId, ethAccount, tokenId, contractId, network
         token_id: tokenId,
         contract_id: contractId,
         network_env: networkEnv,
-        creator_eth_addr: ethAccount,
+        minter_eth_addr: ethAccount,
     })
 }
 

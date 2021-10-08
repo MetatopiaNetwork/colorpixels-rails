@@ -66,12 +66,12 @@ class ClipControllerTest < ActionDispatch::IntegrationTest
   test "#update works" do
     clip = clips(:regular_clip)
 
-    patch api_clip_update_path(clip.id), params: { creator_eth_addr: "creator_eth_addr", token_id: "token_id", contract_id: "contract_id"}
+    patch api_clip_update_path(clip.id), params: { minter_eth_addr: "minter_eth_addr", token_id: "token_id", contract_id: "contract_id"}
 
     assert_response :success
     data = JSON.parse(response.body, symbolize_names: true)
 
-    assert_equal "creator_eth_addr", data[:creator_eth_addr]
+    assert_equal "minter_eth_addr", data[:minter_eth_addr]
     assert_equal "token_id", data[:token_id]
     assert_equal "contract_id", data[:contract_id]
   end
