@@ -1,23 +1,24 @@
-<h1>Event#show</h1>
-<p>Find me in app/views/event/show.html.erb</p>
+<%= render 'shared/header' %>
+<div class="cp-wrap">
+  <div class="cp-card" style="text-align: center">
+    <h1>Event: <%= @event.name %></h1>
+  </div>
 
-<div>
-  Name: <strong><%= @event.name %></strong>
-</div>
+  <div class="cp-card">
+    <div>Live ID:
+      <a href="/live/<%= @event.live_id %>" target="_blank">
+        <strong>
+          <%= @event.live_id %>
+        </strong>
+      </a>
+    </div>
+    <div>
+      Livepeer URL: <strong><%= @event.stream_url %></strong>
+    </div>
+  </div>
 
-<div>
-  live_id:
-  <a href="/live/<%= @event.live_id %>" target="_blank">
-    <strong>
-      <%= @event.live_id %>
-    </strong>
-  </a>
-</div>
 
-<div>
-  stream_url: <strong><%= @event.stream_url %></strong>
-</div>
-
-<div>
-  <%= link_to 'Back', authenticated_root_path %>
+  <div>
+    <%= link_to 'Back', authenticated_root_path, class: "btn btn-primary" %>
+  </div>
 </div>
