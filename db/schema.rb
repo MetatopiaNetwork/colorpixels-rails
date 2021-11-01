@@ -10,10 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_08_154247) do
+ActiveRecord::Schema.define(version: 2021_10_31_232548) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -43,18 +46,20 @@ ActiveRecord::Schema.define(version: 2021_10_08_154247) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "clips", force: :cascade do |t|
-    t.bigint "event_id", null: false
+  create_table "clips", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.bigint "integer_id", default: -> { "nextval('clips_id_seq'::regclass)" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "minter_eth_addr"
     t.string "token_id"
     t.string "contract_id"
     t.string "network_env"
+    t.bigint "event_id"
     t.index ["event_id"], name: "index_clips_on_event_id"
   end
 
-  create_table "creators", force: :cascade do |t|
+  create_table "creators", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.bigint "integer_id", default: -> { "nextval('creators_id_seq'::regclass)" }, null: false
     t.string "email", default: "", null: false
     t.string "username", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -70,7 +75,8 @@ ActiveRecord::Schema.define(version: 2021_10_08_154247) do
     t.index ["slug"], name: "index_creators_on_slug"
   end
 
-  create_table "events", force: :cascade do |t|
+  create_table "events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.bigint "integer_id", default: -> { "nextval('events_id_seq'::regclass)" }, null: false
     t.string "live_id"
     t.string "name"
     t.string "image_url"
@@ -96,5 +102,4 @@ ActiveRecord::Schema.define(version: 2021_10_08_154247) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "clips", "events"
 end
