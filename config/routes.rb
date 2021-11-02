@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :links
   get 'live/:live_id', :to => 'frontend#live', as: "live" # pg: needs to be out of unauthenticated block
 
   # clip API

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_31_232548) do
+ActiveRecord::Schema.define(version: 2021_11_02_231636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2021_10_31_232548) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "slug"
+    t.text "bio"
     t.index ["email"], name: "index_creators_on_email", unique: true
     t.index ["reset_password_token"], name: "index_creators_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_creators_on_slug"
@@ -100,6 +101,16 @@ ActiveRecord::Schema.define(version: 2021_10_31_232548) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "links", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "creator_id", null: false
+    t.string "url"
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["creator_id"], name: "index_links_on_creator_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "links", "creators"
 end

@@ -69,7 +69,8 @@ class CreatorsController < ApplicationController
       end
   
       def creator_params
-        params.require(:creator).permit(:name, :username, :email, :avatar, :bio, :slug)
+        params.require(:creator).permit(:name, :username, :email, :avatar, :bio, :slug,
+                                        link_attributes: Link.attribute_names.map(&:to_sym).push(:_destory))
       end
   
   end
