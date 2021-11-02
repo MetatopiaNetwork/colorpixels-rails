@@ -1,5 +1,7 @@
 class Creator < ApplicationRecord
   has_many :events
+  has_many :links
+  accepts_nested_attributes_for :links, reject_if: ->(attributes){ attributes['url', 'title'].blank? }, allow_destroy: true
 
   extend FriendlyId
   friendly_id :username, use: [:slugged, :finders] 

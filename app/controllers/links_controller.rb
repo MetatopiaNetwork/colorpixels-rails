@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-    before_action :authenticate_creator!
+  before_action :authenticate_creator!
   before_action :set_link, only: [:show, :edit, :update, :destroy]
 
   # GET /links

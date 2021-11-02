@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :links
   get 'live/:live_id', :to => 'frontend#live', as: "live" # pg: needs to be out of unauthenticated block
-
+  
   # clip API
   namespace :api do
     get 'clip/:id', to: "clip#show"
@@ -13,7 +13,8 @@ Rails.application.routes.draw do
 
   unauthenticated do
     root :to => "pages#index", as: :unauthenticated_root
-    resources :creators, only: [:show]
+    # resources :creators, only: [:show]
+    get '/:id' => 'creators#show', as: :social_url
   end
   
   devise_for :creators, path: '',
