@@ -9,6 +9,6 @@ class AddUuidToCreators < ActiveRecord::Migration[6.1]
   end
 
   def down
-    raise ActiveRecord::IrreversibleMigration
+     raise ActiveRecord::ReversibleMigration
   end
 end

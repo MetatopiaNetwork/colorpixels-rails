@@ -4,4 +4,5 @@ class RemoveIntegerIdFromClips < ActiveRecord::Migration[6.1]
     change_column_null :clips, :integer_id, true
     execute "DROP SEQUENCE IF EXISTS clips_id_seq"
   end
+
 end
