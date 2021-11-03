@@ -1,5 +1,6 @@
 class Clip < ApplicationRecord
   acts_as_taggable_on :tags
+  acts_as_taggable_on :rarity
     
   default_scope { order(created_at: :desc)}
   
