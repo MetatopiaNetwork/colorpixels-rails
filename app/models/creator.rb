@@ -1,5 +1,6 @@
 class Creator < ApplicationRecord
-
+  acts_as_tagger
+  
   extend FriendlyId
   friendly_id :username, use: [:slugged, :finders] 
 

@@ -67,3 +67,4 @@ gem "mocha", "~> 1.13"
 gem "aws-sdk-s3", "~> 1.103"
 
 gem 'dotenv-rails', groups: [:development, :test]
+gem "acts-as-taggable-on", "~> 8.1"

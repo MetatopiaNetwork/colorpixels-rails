@@ -1,4 +1,8 @@
 class Clip < ApplicationRecord
+  acts_as_taggable_on :tags
+    
+  default_scope { order(created_at: :desc)}
+  
   belongs_to :event
 
   has_one_attached :video

@@ -31,6 +31,6 @@ class EventController < ApplicationController
   end
 
   def permitted_params
-    params.require(:event).permit(:name, :stream_url)
+    params.require(:event).permit(:name, :stream_url, :tag_list)
   end
 end
