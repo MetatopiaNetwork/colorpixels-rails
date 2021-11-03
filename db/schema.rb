@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_02_231636) do
+ActiveRecord::Schema.define(version: 2021_11_03_043110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_11_02_231636) do
   end
 
   create_table "clips", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.bigint "integer_id", default: -> { "nextval('clips_id_seq'::regclass)" }, null: false
+    t.bigint "integer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "minter_eth_addr"
