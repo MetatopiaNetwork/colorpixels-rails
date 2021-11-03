@@ -11,10 +11,10 @@ class CreatorsController < ApplicationController
     # GET /creators/1
     # GET /creators/1.json
     def show
-      # @creator = current_creator
-      if @creator == current_creator
-        @creator.links.build
-      end 
+      @creator = current_creator
+      # if @creator == current_creator
+      #   @creator.links.build
+      # end 
     end
   
     # GET /creators/new
@@ -67,8 +67,8 @@ class CreatorsController < ApplicationController
   
     private
       def set_creator
-        # @creator = current_creator
-        @creator = params[:id] ? Creator.friendly.find(params[:id]) : current_creator
+        @creator = current_creator
+        # @creator = params[:id] ? Creator.friendly.find(params[:id]) : current_creator
       end
   
       def creator_params

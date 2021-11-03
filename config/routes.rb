@@ -13,8 +13,7 @@ Rails.application.routes.draw do
 
   unauthenticated do
     root :to => "pages#index", as: :unauthenticated_root
-    # resources :creators, only: [:show]
-    get '/:id' => 'creators#show', as: :social_url
+    resources :creators, only: [:show]
   end
   
   devise_for :creators, path: '',
@@ -39,6 +38,7 @@ Rails.application.routes.draw do
   end
 
   resources :links
+  get '/:id' => 'creators#show', as: :social_url
     
 
 end

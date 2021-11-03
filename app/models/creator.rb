@@ -1,7 +1,4 @@
 class Creator < ApplicationRecord
-  has_many :events
-  has_many :links
-  accepts_nested_attributes_for :links, reject_if: ->(attributes){ attributes['url', 'title'].blank? }, allow_destroy: true
 
   extend FriendlyId
   friendly_id :username, use: [:slugged, :finders] 
@@ -10,6 +7,9 @@ class Creator < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :avatar 
+  has_many :events
+  has_many :links
+  accepts_nested_attributes_for :links, reject_if: ->(attributes){ attributes['url', 'title'].blank? }, allow_destroy: true
   
   validate :password_complexity
   validates :username, presence: true, uniqueness: true
@@ -28,7 +28,7 @@ class Creator < ApplicationRecord
   end
 
   def should_generate_new_friendly_id?
-    new_record? || slug.nil? || slug.blank?
+    new_record? || username_changed? || slug.nil? || slug.blank? 
   end
 
   def admin?
