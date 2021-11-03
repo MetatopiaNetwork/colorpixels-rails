@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :links
+  
   get 'live/:live_id', :to => 'frontend#live', as: "live" # pg: needs to be out of unauthenticated block
   
   # clip API
@@ -37,6 +37,8 @@ Rails.application.routes.draw do
     post 'event/create', to: "event#create", as: :event_create
     patch 'event/update', to: "event#update", as: :event_update
   end
+
+  resources :links
     
 
 end
