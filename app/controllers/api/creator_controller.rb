@@ -1,4 +1,4 @@
-class Api::ClipController < Api::AuthController
+class Api::CreatorController < Api::AuthController
     before_action :creator_is_present, only: [:create]
   
     # GET api/creator/:id
