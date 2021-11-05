@@ -4,6 +4,10 @@ import {EthContext} from "./EthContextProvider";
 import {SDKLazyMint721} from "../rarible/SDKRarible";
 import {DEFAULT_SELECTED_NETWORK} from "../rarible/networks";
 import {saveNFTinBackend} from "../utils/APIHelper";
+import { NFTStorage } from 'nft.storage'
+
+const apiKey = process.env.NFT_STOAGE_API_KEY
+const client = new NFTStorage({ token: apiKey })
 
 const NFTContext = createContext(null);
 
@@ -15,10 +19,13 @@ function NFTContextProvider(props) {
     async function clipToNFT() {
         try {
             const clipUrl = clipInfo?.service_url
-            // const clipUrl = "https://colorpixels-dev1.sfo3.digitaloceanspaces.com/5v67iyc2f67ckho272qkmgvo4rz7"
-            // const clipUrl = "/ipfs/QmWLsBu6nS4ovaHbGAXprD1qEssJu4r5taQfB74sCG51tp"
-            if (clipUrl != null) {
-                const tokenId = await SDKLazyMint721(ethAccount, clipUrl)
+
+            const blob = new Blob([clipUrl],  {"type" : "video/mp4"})
+            const cid = await client.storeBlob(blob)
+            const ipfsUrl = 'ipfs://' + cid
+             
+            if (ipfsUrl != null) {
+                const tokenId = await SDKLazyMint721(ethAccount, ipfsUrl)
                 await saveNFTinBackend(clipInfo.id, ethAccount, tokenId, DEFAULT_SELECTED_NETWORK.ERC721_contract, DEFAULT_SELECTED_NETWORK.env)
                 setTokenId(tokenId)
             }
