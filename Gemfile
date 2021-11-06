@@ -64,7 +64,9 @@ gem "friendly_id", "~> 5.4"
 
 gem "mocha", "~> 1.13"
 
-gem "aws-sdk-s3", "~> 1.103"
+# gem "aws-sdk-s3", "~> 1.103"
+
+gem "aws-sdk-s3", require: false
 
 gem 'dotenv-rails', groups: [:development, :test]
 
