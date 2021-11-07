@@ -1,6 +1,11 @@
 class Api::EventController < Api::AuthController
   before_action :event_is_present
 
+  def index
+    events = Event.all
+    render json: events, status: 200
+  end
+
   # GET api/event/:live_id
   def show
     render json: current_event, status: 200

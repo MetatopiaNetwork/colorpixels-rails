@@ -1,6 +1,11 @@
 class Api::CreatorController < Api::AuthController
     before_action :creator_is_present, only: [:create]
-  
+    
+    def index 
+      creators = Creator.all 
+      render json: creators, status: 200
+    end 
+
     # GET api/creator/:id
     def show
       creator = Creator.find_by_id(params[:id])

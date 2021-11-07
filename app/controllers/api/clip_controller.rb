@@ -1,5 +1,10 @@
 class Api::ClipController < Api::AuthController
   before_action :event_is_present, only: [:create]
+  
+  def index
+    clips = Clip.all
+    render json: clips, status: 200 
+  end
 
   # GET api/clip/:id
   def show
